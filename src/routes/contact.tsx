@@ -1,5 +1,16 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Mail, Phone, MapPin, ArrowUpRight, Loader2, Sparkles, CheckCircle2, XCircle, X } from "lucide-react";
+import {
+  Mail,
+  Phone,
+  ArrowUpRight,
+  Loader2,
+  Sparkles,
+  CheckCircle2,
+  XCircle,
+  X,
+  ChevronDown,
+  ExternalLink,
+} from "lucide-react";
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import contactImg from "@/assets/painting.jpg";
@@ -8,11 +19,22 @@ export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
       { title: "Get custom artworks and murals created | Nakshikar's Studio" },
-      { name: "description", content: "Planning a mural, painting, wall art or custom design project? Contact Nakshikars Studio to discuss your residential, commercial or hospitality space in Pune, PCMC & Mumbai." },
+      {
+        name: "description",
+        content:
+          "Planning a mural, painting, wall art or custom design project? Contact Nakshikars Studio to discuss your residential, commercial or hospitality space in Pune, PCMC & Mumbai.",
+      },
       { property: "og:site_name", content: "Nakshikar's Studio" },
       { property: "og:type", content: "website" },
-      { property: "og:title", content: "Get custom artworks and murals created | Nakshikar's Studio" },
-      { property: "og:description", content: "Planning a mural, painting, wall art or custom design project? Contact Nakshikars Studio to discuss your residential, commercial or hospitality space in Pune, PCMC & Mumbai." },
+      {
+        property: "og:title",
+        content: "Get custom artworks and murals created | Nakshikar's Studio",
+      },
+      {
+        property: "og:description",
+        content:
+          "Planning a mural, painting, wall art or custom design project? Contact Nakshikars Studio to discuss your residential, commercial or hospitality space in Pune, PCMC & Mumbai.",
+      },
       { property: "og:image", content: "https://nakshikarsstudio.com/logo.png" },
       { property: "og:url", content: "https://nakshikarsstudio.com/contact" },
       {
@@ -22,41 +44,40 @@ export const Route = createFileRoute("/contact")({
             {
               "@type": "ContactPage",
               "@id": "https://nakshikarsstudio.com/contact#webpage",
-              "url": "https://nakshikarsstudio.com/contact",
-              "name": "Get custom artworks and murals created | Nakshikar's Studio",
-              "description": "Planning a mural, painting, wall art or custom design project? Contact Nakshikars Studio to discuss your residential, commercial or hospitality space in Pune, PCMC & Mumbai.",
-              "isPartOf": {
-                "@id": "https://nakshikarsstudio.com/#website"
+              url: "https://nakshikarsstudio.com/contact",
+              name: "Get custom artworks and murals created | Nakshikar's Studio",
+              description:
+                "Planning a mural, painting, wall art or custom design project? Contact Nakshikars Studio to discuss your residential, commercial or hospitality space in Pune, PCMC & Mumbai.",
+              isPartOf: {
+                "@id": "https://nakshikarsstudio.com/#website",
               },
-              "about": {
-                "@id": "https://nakshikarsstudio.com/#organization"
-              }
+              about: {
+                "@id": "https://nakshikarsstudio.com/#organization",
+              },
             },
             {
               "@type": "BreadcrumbList",
               "@id": "https://nakshikarsstudio.com/contact#breadcrumb",
-              "itemListElement": [
+              itemListElement: [
                 {
                   "@type": "ListItem",
-                  "position": 1,
-                  "name": "Home",
-                  "item": "https://nakshikarsstudio.com/"
+                  position: 1,
+                  name: "Home",
+                  item: "https://nakshikarsstudio.com/",
                 },
                 {
                   "@type": "ListItem",
-                  "position": 2,
-                  "name": "Contact Us",
-                  "item": "https://nakshikarsstudio.com/contact"
-                }
-              ]
-            }
-          ]
+                  position: 2,
+                  name: "Contact Us",
+                  item: "https://nakshikarsstudio.com/contact",
+                },
+              ],
+            },
+          ],
         },
       },
     ],
-    links: [
-      { rel: "canonical", href: "https://nakshikarsstudio.com/contact" },
-    ],
+    links: [{ rel: "canonical", href: "https://nakshikarsstudio.com/contact" }],
   }),
 }).update({
   component: Contact,
@@ -64,7 +85,13 @@ export const Route = createFileRoute("/contact")({
 
 type SubmitStatus = "idle" | "loading" | "success" | "error";
 
-const EMPTY_FORM = { name: "", email: "", phone: "", service: "", message: "" };
+const EMPTY_FORM = {
+  name: "",
+  email: "",
+  phone: "",
+  service: "",
+  message: "",
+};
 
 function StatusPopup({
   status,
@@ -89,7 +116,6 @@ function StatusPopup({
       className="fixed inset-0 z-[9999] flex items-center justify-center px-4"
       onClick={onClose}
     >
-      {/* Blurred backdrop */}
       <div className="absolute inset-0 bg-[color:var(--royal-deep)]/60 backdrop-blur-sm" />
 
       <motion.div
@@ -101,15 +127,15 @@ function StatusPopup({
         className="relative z-10 w-full max-w-md"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Card */}
         <div className="relative bg-white rounded-[2rem] overflow-hidden shadow-[0_32px_80px_rgba(0,0,0,0.22)]">
-
-          {/* Top accent bar */}
           <div
-            className={`h-1.5 w-full ${isSuccess ? "bg-gold-gradient" : "bg-gradient-to-r from-rose-400 to-rose-600"}`}
+            className={`h-1.5 w-full ${
+              isSuccess
+                ? "bg-gold-gradient"
+                : "bg-gradient-to-r from-rose-400 to-rose-600"
+            }`}
           />
 
-          {/* Close button */}
           <button
             onClick={onClose}
             className="absolute top-4 right-4 w-8 h-8 rounded-full flex items-center justify-center text-gray-400 hover:text-gray-700 hover:bg-gray-100 transition-colors"
@@ -118,11 +144,15 @@ function StatusPopup({
           </button>
 
           <div className="px-10 pt-10 pb-10 text-center space-y-5">
-            {/* Icon */}
             <motion.div
               initial={{ scale: 0, rotate: -15 }}
               animate={{ scale: 1, rotate: 0 }}
-              transition={{ type: "spring", stiffness: 320, damping: 20, delay: 0.12 }}
+              transition={{
+                type: "spring",
+                stiffness: 320,
+                damping: 20,
+                delay: 0.12,
+              }}
               className={`w-20 h-20 mx-auto rounded-full flex items-center justify-center ${
                 isSuccess
                   ? "bg-[color:var(--gold)]/10 border-2 border-[color:var(--gold)]/30"
@@ -130,13 +160,15 @@ function StatusPopup({
               }`}
             >
               {isSuccess ? (
-                <CheckCircle2 className="w-10 h-10 text-[color:var(--gold-deep)]" strokeWidth={1.5} />
+                <CheckCircle2
+                  className="w-10 h-10 text-[color:var(--gold-deep)]"
+                  strokeWidth={1.5}
+                />
               ) : (
                 <XCircle className="w-10 h-10 text-rose-500" strokeWidth={1.5} />
               )}
             </motion.div>
 
-            {/* Heading */}
             <div className="space-y-2">
               <h3 className="font-display text-3xl text-[color:var(--royal-deep)]">
                 {isSuccess ? "Inquiry Sent!" : "Sending Failed"}
@@ -153,7 +185,6 @@ function StatusPopup({
               )}
             </div>
 
-            {/* Details pill (success only) */}
             {isSuccess && (
               <motion.div
                 initial={{ opacity: 0, y: 8 }}
@@ -168,7 +199,6 @@ function StatusPopup({
               </motion.div>
             )}
 
-            {/* Actions */}
             <div className="flex flex-col sm:flex-row gap-3 pt-2">
               {isSuccess ? (
                 <>
@@ -209,13 +239,31 @@ function StatusPopup({
   );
 }
 
+function LocationPinIcon(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" {...props}>
+      <mask id="contact-pin-hole-mask">
+        <rect width="24" height="24" fill="white" />
+        <circle cx="12" cy="9.5" r="3.2" fill="black" />
+      </mask>
+      <path
+        d="M12 2C7.8 2 4.4 5.4 4.4 9.6c0 5.4 6.8 11.5 7.1 11.75.28.25.72.25 1 0 .3-.25 7.1-6.35 7.1-11.75C19.6 5.4 16.2 2 12 2Z"
+        fill="currentColor"
+        mask="url(#contact-pin-hole-mask)"
+      />
+    </svg>
+  );
+}
+
 function Contact() {
   const [status, setStatus] = useState<SubmitStatus>("idle");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [formData, setFormData] = useState(EMPTY_FORM);
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
   ) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
@@ -237,7 +285,9 @@ function Contact() {
       } else {
         const errData = await response.json().catch(() => ({}));
         setStatus("error");
-        setErrorMessage(errData.error || `HTTP ${response.status} ${response.statusText}`);
+        setErrorMessage(
+          errData.error || `HTTP ${response.status} ${response.statusText}`
+        );
       }
     } catch (err: any) {
       setStatus("error");
@@ -257,7 +307,7 @@ function Contact() {
   };
 
   return (
-    <div className="bg-background min-h-screen pt-24 pb-12 relative">
+    <div className="bg-[#fcfaf7] min-h-screen pt-28 pb-20 relative">
       {/* Status popup */}
       <AnimatePresence>
         {(status === "success" || status === "error") && (
@@ -270,93 +320,81 @@ function Contact() {
         )}
       </AnimatePresence>
 
-      <div className="mx-auto max-w-7xl px-6 relative z-10">
-        <div className="mb-12 text-center max-w-2xl mx-auto space-y-6">
-          <div className="inline-flex items-center justify-center space-x-2 bg-white/40 backdrop-blur-md px-4 py-1.5 rounded-full border border-[color:var(--gold)]/30 shadow-soft">
-            <Sparkles className="w-4 h-4 text-[color:var(--gold-deep)]" />
-            <span className="text-xs uppercase tracking-widest font-semibold text-[color:var(--royal-deep)]">
+      <div className="mx-auto max-w-6xl px-5 sm:px-8 relative z-10">
+        {/* Header Section */}
+        <div className="mb-12 text-center max-w-4xl mx-auto space-y-4">
+          <div className="inline-flex items-center justify-center space-x-2 bg-white/80 backdrop-blur-md px-4 py-1.5 rounded-full border border-[color:var(--gold)]/35 shadow-soft">
+            <Sparkles className="w-3.5 h-3.5 text-[color:var(--gold)]" />
+            <span className="text-[11px] uppercase tracking-[0.2em] font-semibold text-[color:var(--royal-deep)]">
               Get In Touch
             </span>
           </div>
-          <h1 className="font-display text-5xl md:text-7xl font-medium tracking-tight">
+
+          <h1 className="font-display text-[clamp(1.75rem,4.2vw,3.6rem)] font-medium tracking-tight text-[color:var(--charcoal)] whitespace-nowrap">
             Let's build your{" "}
-            <span className="italic text-gradient-gold">masterpiece.</span>
+            <span className="italic font-serif text-gradient-gold">
+              masterpiece.
+            </span>
           </h1>
-          <p className="text-muted-foreground text-lg leading-relaxed max-w-xl mx-auto">
+
+          <p className="text-muted-foreground text-sm sm:text-base leading-relaxed max-w-2xl mx-auto">
             Whether you have a vision in mind or need help discovering one, our
             studio is ready to bring your ideas to life.
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-10 items-stretch bg-white/90 rounded-[2.5rem] border border-white/50 p-2 sm:p-4 shadow-luxe">
-
-          {/* Left Visual/Info */}
-          <div className="relative rounded-[2rem] overflow-hidden group">
+        {/* Top Card: Visual + Inquiry Form */}
+        <div className="bg-white rounded-3xl overflow-hidden shadow-luxe border border-gray-100 grid lg:grid-cols-12 items-stretch">
+          {/* Left Column: Full-Bleed Visual Card */}
+          <div className="lg:col-span-5 relative min-h-[380px] sm:min-h-[460px] lg:min-h-full overflow-hidden group">
             <img
               src={contactImg}
-              alt="Studio Art"
+              alt="Nakshikar's Studio Craftsmanship"
               loading="lazy"
               decoding="async"
-              className="absolute inset-0 w-full h-full object-cover"
+              className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1200ms] group-hover:scale-105"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[color:var(--royal-deep)]/90 via-[color:var(--royal-deep)]/40 to-transparent pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent pointer-events-none" />
 
-            <div className="relative h-full flex flex-col justify-end p-8 md:p-12 text-white">
-              <h3 className="font-display text-3xl md:text-4xl mb-6">
-                Nakshikar's Studio
+            <div className="absolute inset-x-0 bottom-0 p-8 sm:p-10 text-white z-10">
+              <h3 className="font-display text-3xl sm:text-4xl text-white tracking-tight">
+                Nakshikar's{" "}
+                <span className="italic font-serif text-gradient-gold">
+                  Studio
+                </span>
               </h3>
-              <div className="space-y-6">
-                <a
-                  href="mailto:sandesh.j@nakshikarsstudio.com"
-                  className="flex items-center gap-4 hover:text-[color:var(--gold-light)] transition-colors group/link"
-                >
-                  <div className="h-12 w-12 rounded-full flex items-center justify-center shrink-0 bg-gradient-to-br from-amber-400 to-orange-500 shadow-lg shadow-orange-500/30 group-hover/link:scale-110 transition-transform duration-200">
-                    <Mail className="h-5 w-5 text-white" />
-                  </div>
-                  <span className="text-sm md:text-base font-medium tracking-wide">
-                    sandesh.j@nakshikarsstudio.com
-                  </span>
-                </a>
-                <a
-                  href="tel:+919890813587"
-                  className="flex items-center gap-4 hover:text-[color:var(--gold-light)] transition-colors group/link"
-                >
-                  <div className="h-12 w-12 rounded-full flex items-center justify-center shrink-0 bg-gradient-to-br from-emerald-400 to-teal-600 shadow-lg shadow-emerald-500/30 group-hover/link:scale-110 transition-transform duration-200">
-                    <Phone className="h-5 w-5 text-white" />
-                  </div>
-                  <span className="text-sm md:text-base font-medium tracking-wide">
-                    +91 98908 13587
-                  </span>
-                </a>
-                <a
-                  href="https://share.google/5NnZyJ9qtAQzIplii"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-4 hover:text-[color:var(--gold-light)] transition-colors group/link"
-                >
-                  <div className="h-12 w-12 rounded-full flex items-center justify-center shrink-0 bg-gradient-to-br from-violet-500 to-purple-700 shadow-lg shadow-purple-500/30 group-hover/link:scale-110 transition-transform duration-200">
-                    <MapPin className="h-5 w-5 text-white" />
-                  </div>
-                  <span className="text-sm md:text-base font-medium tracking-wide leading-relaxed">
-                    Pune, Maharashtra
-                    <br />
-                    India
-                  </span>
-                </a>
-              </div>
+              <div className="w-16 h-[2px] bg-gradient-to-r from-[color:var(--gold)] to-[color:var(--gold-light)] mt-2" />
             </div>
           </div>
 
-          {/* Right Form */}
-          <div className="p-6 md:p-10 lg:p-12 flex flex-col justify-center">
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="space-y-6">
-                <div className="space-y-2">
+          {/* Right Column: Send Us A Message Form */}
+          <div className="lg:col-span-7 p-6 sm:p-8 lg:p-12 flex flex-col justify-center space-y-6">
+            <div className="space-y-2">
+              <div className="flex items-center gap-2">
+                <span className="w-6 h-[2px] bg-[color:var(--gold)]" />
+                <span className="text-[11px] font-bold tracking-[0.22em] uppercase text-[color:var(--gold)]">
+                  Send Us A Message
+                </span>
+              </div>
+              <h2 className="font-display text-3xl sm:text-4xl text-[color:var(--charcoal)] tracking-tight">
+                Tell us about your{" "}
+                <span className="italic font-serif text-gradient-gold font-normal">
+                  idea.
+                </span>
+              </h2>
+              <p className="text-muted-foreground text-sm leading-relaxed">
+                Share your project details and we'll get back to you.
+              </p>
+            </div>
+
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div className="grid sm:grid-cols-2 gap-4">
+                <div className="space-y-1.5">
                   <label
                     htmlFor="contact-name"
-                    className="text-xs uppercase tracking-widest font-semibold text-[color:var(--royal-deep)]"
+                    className="block text-xs font-semibold text-gray-800"
                   >
-                    Your Name
+                    Your Name <span className="text-rose-500">*</span>
                   </label>
                   <input
                     id="contact-name"
@@ -366,17 +404,17 @@ function Contact() {
                     onChange={handleChange}
                     type="text"
                     autoComplete="name"
-                    className="w-full border-b-2 border-[color:var(--gold)]/50 px-2 py-3 text-base text-gray-800 outline-none focus:border-[color:var(--gold-deep)] transition-colors bg-white/40"
                     placeholder="Jane Doe"
+                    className="w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm text-gray-800 placeholder:text-gray-400 focus:border-[color:var(--royal-deep)] focus:ring-1 focus:ring-[color:var(--royal-deep)] outline-none transition-all shadow-sm"
                   />
                 </div>
 
-                <div className="space-y-2">
+                <div className="space-y-1.5">
                   <label
                     htmlFor="contact-email"
-                    className="text-xs uppercase tracking-widest font-semibold text-[color:var(--royal-deep)]"
+                    className="block text-xs font-semibold text-gray-800"
                   >
-                    Email Address
+                    Email Address <span className="text-rose-500">*</span>
                   </label>
                   <input
                     id="contact-email"
@@ -386,64 +424,69 @@ function Contact() {
                     onChange={handleChange}
                     type="email"
                     autoComplete="email"
-                    className="w-full border-b-2 border-[color:var(--gold)]/50 px-2 py-3 text-base text-gray-800 outline-none focus:border-[color:var(--gold-deep)] transition-colors bg-white/40"
                     placeholder="jane@example.com"
+                    className="w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm text-gray-800 placeholder:text-gray-400 focus:border-[color:var(--royal-deep)] focus:ring-1 focus:ring-[color:var(--royal-deep)] outline-none transition-all shadow-sm"
+                  />
+                </div>
+              </div>
+
+              <div className="grid sm:grid-cols-2 gap-4">
+                <div className="space-y-1.5">
+                  <label
+                    htmlFor="contact-phone"
+                    className="block text-xs font-semibold text-gray-800"
+                  >
+                    Phone Number
+                  </label>
+                  <input
+                    id="contact-phone"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    type="tel"
+                    autoComplete="tel"
+                    placeholder="+91 98765 43210"
+                    className="w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm text-gray-800 placeholder:text-gray-400 focus:border-[color:var(--royal-deep)] focus:ring-1 focus:ring-[color:var(--royal-deep)] outline-none transition-all shadow-sm"
                   />
                 </div>
 
-                <div className="grid sm:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <label
-                      htmlFor="contact-phone"
-                      className="text-xs uppercase tracking-widest font-semibold text-[color:var(--royal-deep)]"
-                    >
-                      Phone Number
-                    </label>
-                    <input
-                      id="contact-phone"
-                      required
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handleChange}
-                      type="tel"
-                      autoComplete="tel"
-                      className="w-full border-b-2 border-[color:var(--gold)]/50 px-2 py-3 text-base text-gray-800 outline-none focus:border-[color:var(--gold-deep)] transition-colors bg-white/40"
-                      placeholder="+91 98765 43210"
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <label
-                      htmlFor="contact-service"
-                      className="text-xs uppercase tracking-widest font-semibold text-[color:var(--royal-deep)]"
-                    >
-                      Service of Interest
-                    </label>
+                <div className="space-y-1.5">
+                  <label
+                    htmlFor="contact-service"
+                    className="block text-xs font-semibold text-gray-800"
+                  >
+                    Service of Interest
+                  </label>
+                  <div className="relative">
                     <select
                       id="contact-service"
-                      required
                       name="service"
                       value={formData.service}
                       onChange={handleChange}
-                      className="w-full border-b-2 border-[color:var(--gold)]/50 px-2 py-3 text-base text-gray-800 outline-none focus:border-[color:var(--gold-deep)] transition-colors bg-white/40"
+                      className="w-full appearance-none rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm text-gray-800 placeholder:text-gray-400 focus:border-[color:var(--royal-deep)] focus:ring-1 focus:ring-[color:var(--royal-deep)] outline-none transition-all shadow-sm pr-10 cursor-pointer"
                     >
-                      <option value="" disabled>
-                        Select a service
-                      </option>
-                      <option>Interior Design</option>
-                      <option>Branding &amp; Graphic Design</option>
-                      <option>Art &amp; Murals</option>
-                      <option>Other</option>
+                      <option value="">Select a service</option>
+                      <option value="Paintings">Paintings</option>
+                      <option value="Murals">Murals</option>
+                      <option value="Wall Design">Wall Design</option>
+                      <option value="Graphics">Graphics & Branding</option>
+                      <option value="Nameplates">Nameplates</option>
+                      <option value="Interior Support">Interior Support</option>
+                      <option value="Other">Other</option>
                     </select>
+                    <ChevronDown className="absolute right-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400 pointer-events-none" />
                   </div>
                 </div>
+              </div>
 
-                <div className="space-y-2">
-                  <label
-                    htmlFor="contact-message"
-                    className="text-xs uppercase tracking-widest font-semibold text-[color:var(--royal-deep)]"
-                  >
-                    Project Details
-                  </label>
+              <div className="space-y-1.5">
+                <label
+                  htmlFor="contact-message"
+                  className="block text-xs font-semibold text-gray-800"
+                >
+                  Project Details
+                </label>
+                <div className="relative">
                   <textarea
                     id="contact-message"
                     required
@@ -451,35 +494,146 @@ function Contact() {
                     value={formData.message}
                     onChange={handleChange}
                     rows={4}
-                    className="w-full border-b-2 border-[color:var(--gold)]/50 px-2 py-3 text-base text-gray-800 outline-none focus:border-[color:var(--gold-deep)] transition-colors bg-white/40 resize-none"
+                    maxLength={500}
                     placeholder="Tell us about your creative vision..."
+                    className="w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm text-gray-800 placeholder:text-gray-400 focus:border-[color:var(--royal-deep)] focus:ring-1 focus:ring-[color:var(--royal-deep)] outline-none transition-all shadow-sm resize-none pb-7"
                   />
+                  <span className="absolute right-3 bottom-2.5 text-[11px] text-gray-400 font-mono">
+                    {formData.message.length}/500
+                  </span>
                 </div>
               </div>
 
-              <div className="pt-4">
+              <div className="pt-2">
                 <button
                   disabled={status === "loading"}
                   type="submit"
-                  className="w-full relative overflow-hidden group rounded-2xl bg-[color:var(--royal-deep)] text-white px-8 py-5 text-xs uppercase tracking-[0.2em] font-medium transition-all hover:shadow-luxe disabled:opacity-70 cursor-pointer"
+                  className="w-full rounded-xl bg-[#09112a] hover:bg-[#121c40] text-white py-3.5 text-xs uppercase tracking-[0.2em] font-semibold transition-all hover:shadow-luxe disabled:opacity-70 cursor-pointer flex items-center justify-center gap-2 hover:scale-[1.01]"
                 >
-                  <div className="absolute inset-0 bg-gold-gradient opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  <span className="relative z-10 flex items-center justify-center gap-3">
-                    {status === "loading" ? (
-                      <>
-                        <Loader2 className="w-4 h-4 animate-spin" />
-                        Sending…
-                      </>
-                    ) : (
-                      <>
-                        Submit Inquiry
-                        <ArrowUpRight className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                      </>
-                    )}
-                  </span>
+                  {status === "loading" ? (
+                    <>
+                      <Loader2 className="w-4 h-4 animate-spin" />
+                      Sending…
+                    </>
+                  ) : (
+                    <>
+                      Submit Inquiry <ArrowUpRight className="h-4 w-4" />
+                    </>
+                  )}
                 </button>
               </div>
             </form>
+          </div>
+        </div>
+
+        {/* Bottom Section: Studio Visit & Map */}
+        <div className="mt-16 sm:mt-20 space-y-8">
+          {/* Header */}
+          <div className="space-y-2">
+            <div className="flex items-center gap-2">
+              <span className="w-6 h-[2px] bg-[color:var(--gold)]" />
+              <span className="text-[11px] font-bold tracking-[0.22em] uppercase text-[color:var(--gold)]">
+                Visit Our Studio
+              </span>
+            </div>
+            <h2 className="font-display text-3xl sm:text-4xl text-[color:var(--charcoal)] tracking-tight">
+              Visit Our Studio in{" "}
+              <span className="italic font-serif text-gradient-gold">
+                Pune.
+              </span>
+            </h2>
+            <p className="text-muted-foreground text-sm leading-relaxed max-w-xl">
+              Visit our studio in Akurdi, Pune for personal consultations, live
+              material previews, and custom artwork commissions.
+            </p>
+          </div>
+
+          {/* Contact Info in 3 Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6">
+            {/* Card 1: Office Address */}
+            <div className="bg-white rounded-2xl p-6 sm:p-7 border border-gray-100 shadow-soft hover:shadow-md transition-all flex flex-col gap-4">
+              <div className="h-11 w-11 rounded-full bg-[#fdf3e2] text-[#d49938] flex items-center justify-center shrink-0 shadow-sm">
+                <LocationPinIcon className="h-5 w-5" />
+              </div>
+              <div>
+                <div className="text-[11px] font-bold uppercase tracking-[0.18em] text-[color:var(--charcoal)] mb-1.5">
+                  Office Address
+                </div>
+                <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
+                  Akurdi, Pimpri-Chinchwad, Maharashtra, Pune-411035, India
+                </p>
+              </div>
+            </div>
+
+            {/* Card 2: Call Us */}
+            <a
+              href="tel:+919890813587"
+              className="bg-white rounded-2xl p-6 sm:p-7 border border-gray-100 shadow-soft hover:shadow-md transition-all flex flex-col gap-4 group hover:border-[color:var(--gold)]/40"
+            >
+              <div className="h-11 w-11 rounded-full bg-[#fdf3e2] text-[#d49938] flex items-center justify-center shrink-0 shadow-sm group-hover:scale-110 transition-transform">
+                <Phone className="h-5 w-5" />
+              </div>
+              <div>
+                <div className="text-[11px] font-bold uppercase tracking-[0.18em] text-[color:var(--charcoal)] mb-1.5">
+                  Call Us
+                </div>
+                <p className="text-xs sm:text-sm text-gray-700 font-medium group-hover:text-[color:var(--gold-deep)] transition-colors">
+                  +91 98908 13587
+                </p>
+                <p className="text-xs text-muted-foreground mt-1">
+                  Available Mon - Sat for inquiries
+                </p>
+              </div>
+            </a>
+
+            {/* Card 3: Email Us */}
+            <a
+              href="mailto:sandesh.j@nakshikarsstudio.com"
+              className="bg-white rounded-2xl p-6 sm:p-7 border border-gray-100 shadow-soft hover:shadow-md transition-all flex flex-col gap-4 group hover:border-[color:var(--gold)]/40"
+            >
+              <div className="h-11 w-11 rounded-full bg-[#fdf3e2] text-[#d49938] flex items-center justify-center shrink-0 shadow-sm group-hover:scale-110 transition-transform">
+                <Mail className="h-5 w-5" />
+              </div>
+              <div>
+                <div className="text-[11px] font-bold uppercase tracking-[0.18em] text-[color:var(--charcoal)] mb-1.5">
+                  Email Us
+                </div>
+                <p className="text-xs sm:text-sm text-gray-700 font-medium group-hover:text-[color:var(--gold-deep)] transition-colors">
+                  sandesh.j@nakshikarsstudio.com
+                </p>
+                <p className="text-xs text-muted-foreground mt-1">
+                  We reply within 24 hours
+                </p>
+              </div>
+            </a>
+          </div>
+
+          {/* Map Below Cards */}
+          <div className="space-y-4 pt-2">
+            <div className="rounded-3xl overflow-hidden border border-gray-200/90 shadow-luxe bg-white h-[380px] sm:h-[450px] w-full relative">
+              <iframe
+                title="Nakshikar's Studio Location Map"
+                src="https://maps.google.com/maps?q=World+Of+Mother,+Akurdi,+Pimpri-Chinchwad,+Maharashtra+411035&t=&z=16&ie=UTF8&iwloc=&output=embed"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen={false}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="w-full h-full"
+              />
+            </div>
+
+            <div className="flex justify-start">
+              {/* <a
+                href="https://maps.google.com/?q=Office.+No+A+22,+World+Of+Mother,+behind+JAI+GANESH+VISION,+near+Aagan+hotel,+Shubhashri+Residency,+Ganga+Nagar,+Akurdi,+Pimpri-Chinchwad,+Maharashtra+411035"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-xl bg-[#e5aa42] hover:bg-[#d89d38] text-[color:var(--charcoal)] px-5 py-3 text-xs font-bold uppercase tracking-[0.14em] shadow-sm hover:shadow transition-all"
+              >
+                <ExternalLink className="h-4 w-4" /> Open in Google Maps ↗
+              </a> */}
+            </div>
           </div>
         </div>
       </div>
