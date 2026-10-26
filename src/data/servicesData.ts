@@ -33,7 +33,7 @@ export const SERVICES_DETAIL_MAP: Record<Category, ServiceDetail> = {
     category: "Graphics",
     slug: "graphics",
     heroTitle: "Bespoke Graphic Design & Brand Identity Systems",
-    heroSubtitle: "Building enduring visual legacies that bridge strategic commerce with artistic elegance across Pune, PCMC & Mumbai.",
+    heroSubtitle: "Design studio crafting memorable logos, lettering, and packaging that define your brand identity.",
     description: "At Nakshikar's Studio, graphic design is an art of intentional storytelling. We collaborate with ambitious startups, luxury developers, hospitality groups, and cultural entities to craft distinctive brand identities, bespoke typography, luxury packaging, and high-impact marketing collateral.",
     image: graphicsImg,
     offerings: [
@@ -73,7 +73,7 @@ export const SERVICES_DETAIL_MAP: Record<Category, ServiceDetail> = {
     category: "Wall Design",
     slug: "wall-design",
     heroTitle: "Architectural Wall Design & Sculptural Textures",
-    heroSubtitle: "Transforming standard partitions into dynamic architectural feature walls with tactile plaster, metallic patinas, and 3D relief panels.",
+    heroSubtitle: "Transforming plain walls into standout features with textured finishes and bespoke 3D designs.",
     description: "Elevate your interior architecture with handcrafted wall treatments that respond to ambient lighting throughout the day. From calming organic stucco textures to bold geometric relief backdrops, our artisans create tailored spatial atmospheres for luxury homes, corporate boardrooms, and boutique hotels.",
     image: wallDesignImg,
     offerings: [
@@ -113,7 +113,7 @@ export const SERVICES_DETAIL_MAP: Record<Category, ServiceDetail> = {
     category: "Paintings",
     slug: "paintings",
     heroTitle: "Original Handcrafted Paintings & Canvas Art Commissions",
-    heroSubtitle: "Heirloom-grade fine art rendered in oil, acrylic, and 24K gold leaf on Belgian canvas by master painters in Pune.",
+    heroSubtitle: "Original handmade paintings, from modern abstracts to peaceful landscapes, crafted with rich pigments and gold accents.",
     description: "Nakshikar's Studio crafts original fine art pieces tailored specifically to the proportions and spirit of your space. Whether commissioning a breathtaking contemporary abstract, an evocative landscape, or a sacred spiritual portrait, every piece is layered with archival pigments to endure for generations.",
     image: paintingImg,
     offerings: [
@@ -153,7 +153,7 @@ export const SERVICES_DETAIL_MAP: Record<Category, ServiceDetail> = {
     category: "Murals",
     slug: "murals",
     heroTitle: "Large-Scale Wall Murals & Architectural Art Installations",
-    heroSubtitle: "Monumental site-specific murals that transform ordinary masonry into breathtaking panoramic visual experiences.",
+    heroSubtitle: "Handcrafted indoor and outdoor wall murals and 3D art engineered for bold, weather-resistant impact.",
     description: "Renowned across Maharashtra for ambitious scale and flawless technical execution, Nakshikar's Studio creates site-specific wall murals for villas, luxury restaurants, corporate campuses, and public cultural spaces. We blend trompe-l'œil realism, 3D sculptural elements, and weather-resistant polymer pigments.",
     image: muralImg,
     offerings: [
@@ -193,7 +193,7 @@ export const SERVICES_DETAIL_MAP: Record<Category, ServiceDetail> = {
     category: "Nameplates",
     slug: "nameplates",
     heroTitle: "Bespoke Designer Nameplates & Luxury Entrance Signage",
-    heroSubtitle: "Handcrafting distinguished entrance statements using brass, teakwood, cast acrylic, and warm LED backlighting.",
+    heroSubtitle: "Custom handcrafted nameplates and entrance signs designed in brass, acrylic, teakwood, and ambient lighting.",
     description: "The entryway is the defining introduction to your home or office. At Nakshikar's Studio, we engineer bespoke designer nameplates that harmonize rich natural materials with contemporary typographic precision, creating warm and unforgettable greetings.",
     image: nameplateImg,
     offerings: [
@@ -233,7 +233,7 @@ export const SERVICES_DETAIL_MAP: Record<Category, ServiceDetail> = {
     category: "Interior Support",
     slug: "interior-support",
     heroTitle: "Interior Art Consulting & Spatial Styling Partnerships",
-    heroSubtitle: "End-to-end artisan collaboration for architects, interior designers, and luxury builders seeking turnkey artistic solutions.",
+    heroSubtitle: "End-to-end art consulting, decor curation, and installation support for architects and interior designers.",
     description: "We serve as the creative execution extension of your interior architecture firm. Beyond standalone pieces, our workshop produces bespoke decorative sculptures, custom lighting accents, artistic metal screens, and curated spatial styling elements that tie entire design concepts together.",
     image: interiorSupportImg,
     offerings: [

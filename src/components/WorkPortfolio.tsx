@@ -6,7 +6,6 @@ import { SectionEyebrow } from "@/components/SectionEyebrow";
 import { LazyImage } from "@/components/LazyImage";
 import { ALL_WORKS, CATEGORIES, type WorkItem, type Category } from "@/data/worksData";
 import { categoryToSlug } from "@/lib/categorySlugs";
-import { CATEGORY_SEO_MAP, PORTFOLIO_OVERVIEW_SEO } from "@/data/portfolioCategorySeo";
 
 import logoF1 from "@/assets/Nakshikar logos image/Logo F 1.jpg";
 import logoF2 from "@/assets/Nakshikar logos image/Logo F 2.jpg";
@@ -194,23 +193,34 @@ export function WorkPortfolio({
     return pages;
   };
 
-  const currentSeo = isCategoryRoute
-    ? CATEGORY_SEO_MAP[activeCategory] || PORTFOLIO_OVERVIEW_SEO
-    : PORTFOLIO_OVERVIEW_SEO;
-
   return (
     <div className="bg-background text-foreground min-h-screen pt-24">
       <section className="pt-8 pb-20 sm:pt-12 sm:pb-28 bg-[color:var(--cream)] relative overflow-hidden min-h-[calc(100vh-6rem)]">
         <div className="absolute right-0 top-40 h-96 w-96 rounded-full bg-royal-gradient opacity-15 blur-3xl" />
         <div className="mx-auto max-w-[1500px] px-5 sm:px-[6%] lg:px-[8%] relative z-10">
-          {/* Header & Filter Tabs */}
+          {/* Header & Filter Tabs matching reference design */}
           <div
             ref={galleryRef}
-            className="flex flex-col gap-8 mb-12 scroll-mt-32"
+            className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-12 scroll-mt-32"
           >
-            {/* Category Filter Pills matching screenshot styling */}
-            <div className="flex flex-col gap-4">
-              <div className="flex flex-wrap gap-2.5 items-center">
+            {/* Left: Title */}
+            <div className="max-w-xl">
+              <div className="text-[11px] font-bold tracking-[0.25em] uppercase text-[color:var(--gold)] mb-3">
+                Portfolio
+              </div>
+              <h1 className="font-display text-[clamp(2.4rem,4.5vw,4.5rem)] leading-[1.05] tracking-tight text-[color:var(--charcoal)]">
+                A gallery of{" "}
+                <span className="italic font-serif text-gradient-gold font-normal">
+                  our finest
+                </span>
+                <br />
+                work.
+              </h1>
+            </div>
+
+            {/* Right: Category Filter Pills */}
+            <div className="flex flex-col gap-3 lg:items-end">
+              <div className="flex flex-wrap gap-2.5 items-center max-w-xl lg:justify-end">
                 {CATEGORIES.map((cat) => {
                   const isActive = activeCategory === cat;
                   return (
@@ -236,7 +246,7 @@ export function WorkPortfolio({
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
-                    className="flex flex-wrap gap-2.5 items-center pl-1"
+                    className="flex flex-wrap gap-2.5 items-center pl-1 pt-1"
                   >
                     <span className="text-[10px] uppercase tracking-widest text-muted-foreground mr-1">
                       Type:
@@ -263,16 +273,6 @@ export function WorkPortfolio({
                   </motion.div>
                 )}
               </AnimatePresence>
-            </div>
-
-            <div className="max-w-4xl">
-              <SectionEyebrow text={currentSeo.eyebrow} />
-              <h1 className="font-display text-[clamp(1.9rem,3.6vw,3.2rem)] leading-[1.1] tracking-tight text-[color:var(--charcoal)] mb-3">
-                {currentSeo.h1}
-              </h1>
-              <p className="text-muted-foreground text-sm sm:text-base leading-relaxed max-w-3xl">
-                {currentSeo.introParagraph}
-              </p>
             </div>
           </div>
 

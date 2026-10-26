@@ -12,7 +12,7 @@ export const PORTFOLIO_OVERVIEW_SEO: CategorySeoData = {
   title: "Portfolio of Custom Art, Murals & Design | Nakshikar's Studio",
   metaDescription:
     "Explore the portfolio of Nakshikar's Studio in Pune, PCMC & Mumbai. Handcrafted canvas paintings, custom murals, architectural wall art, designer nameplates, and graphics.",
-  h1: "Art & Design Portfolio",
+  h1: "Art & Design",
   eyebrow: "Our Portfolio",
   introParagraph:
     "Explore bespoke artistic creations by Nakshikar's Studio in Pune, PCMC & Mumbai. From original canvas paintings and architectural wall murals to designer nameplates and corporate branding, our work brings timeless craft to modern spaces.",
