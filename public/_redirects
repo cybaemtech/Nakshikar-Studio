@@ -1,0 +1,21 @@
+# Domain Canonicalization (301 Redirect www & HTTP to https://nakshikarsstudio.com/)
+http://nakshikarsstudio.com/*  https://nakshikarsstudio.com/:splat  301!
+http://www.nakshikarsstudio.com/*  https://nakshikarsstudio.com/:splat  301!
+https://www.nakshikarsstudio.com/*  https://nakshikarsstudio.com/:splat  301!
+
+/work category=Graphics /work/graphics 301!
+/work category=graphics /work/graphics 301!
+/work category=Wall%20Design /work/wall-design 301!
+/work category=wall-design /work/wall-design 301!
+/work category=Paintings /work/paintings 301!
+/work category=paintings /work/paintings 301!
+/work category=Murals /work/murals 301!
+/work category=murals /work/murals 301!
+/work category=Nameplates /work/nameplates 301!
+/work category=nameplates /work/nameplates 301!
+/work category=Interior%20Support /work/interior-support 301!
+/work category=interior-support /work/interior-support 301!
+
+/api/send-email  /.netlify/functions/send-email  200
+/*  /index.html  200
+

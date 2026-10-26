@@ -1,0 +1,118 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[[redirects]]
+  from = "http://nakshikarsstudio.com/*"
+  to = "https://nakshikarsstudio.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://www.nakshikarsstudio.com/*"
+  to = "https://nakshikarsstudio.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://www.nakshikarsstudio.com/*"
+  to = "https://nakshikarsstudio.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/work"
+  to = "/work/graphics"
+  status = 301
+  force = true
+  query = {category = "Graphics"}
+
+[[redirects]]
+  from = "/work"
+  to = "/work/graphics"
+  status = 301
+  force = true
+  query = {category = "graphics"}
+
+[[redirects]]
+  from = "/work"
+  to = "/work/wall-design"
+  status = 301
+  force = true
+  query = {category = "Wall Design"}
+
+[[redirects]]
+  from = "/work"
+  to = "/work/wall-design"
+  status = 301
+  force = true
+  query = {category = "wall-design"}
+
+[[redirects]]
+  from = "/work"
+  to = "/work/paintings"
+  status = 301
+  force = true
+  query = {category = "Paintings"}
+
+[[redirects]]
+  from = "/work"
+  to = "/work/paintings"
+  status = 301
+  force = true
+  query = {category = "paintings"}
+
+[[redirects]]
+  from = "/work"
+  to = "/work/murals"
+  status = 301
+  force = true
+  query = {category = "Murals"}
+
+[[redirects]]
+  from = "/work"
+  to = "/work/murals"
+  status = 301
+  force = true
+  query = {category = "murals"}
+
+[[redirects]]
+  from = "/work"
+  to = "/work/nameplates"
+  status = 301
+  force = true
+  query = {category = "Nameplates"}
+
+[[redirects]]
+  from = "/work"
+  to = "/work/nameplates"
+  status = 301
+  force = true
+  query = {category = "nameplates"}
+
+[[redirects]]
+  from = "/work"
+  to = "/work/interior-support"
+  status = 301
+  force = true
+  query = {category = "Interior Support"}
+
+[[redirects]]
+  from = "/work"
+  to = "/work/interior-support"
+  status = 301
+  force = true
+  query = {category = "interior-support"}
+
+[[redirects]]
+  from = "/api/send-email"
+  to = "/.netlify/functions/send-email"
+  status = 200
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[functions]
+  node_bundler = "esbuild"
