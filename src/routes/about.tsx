@@ -79,18 +79,18 @@ export const Route = createFileRoute("/about")({
 
 function AboutHero() {
   return (
-    <section className="relative pt-28 pb-20 lg:pt-32 lg:pb-24 overflow-hidden bg-white min-h-[85vh] flex items-start">
+    <section className="relative min-h-screen min-h-[100svh] pt-28 pb-16 sm:pt-32 sm:pb-20 lg:pt-36 lg:pb-24 overflow-hidden bg-white flex items-center">
       <div className="absolute inset-0 z-0">
         <img
           src={aboutheader}
-          alt="Paint brushes"
-          width={1600}
-          height={640}
-          loading="lazy"
+          alt="Paint brushes and artist palette"
+          loading="eager"
           decoding="async"
           fetchPriority="high"
-          className="w-full h-full object-cover object-top"
+          className="w-full h-full object-cover object-[70%_center] sm:object-[65%_center] md:object-center"
         />
+        {/* Soft responsive fade on mobile so text remains crisp and readable */}
+        <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/75 to-transparent md:hidden pointer-events-none" />
       </div>
 
       <div className="mx-auto max-w-7xl w-full px-5 sm:px-8 relative z-10 grid md:grid-cols-2 mt-1 lg:mt-1">
@@ -116,7 +116,7 @@ function AboutHero() {
             <Link to="/contact" className="flex items-center justify-center gap-3 rounded-[4px] bg-[#1a224a] text-white px-7 py-3 text-sm font-medium hover:bg-opacity-90 transition-all shadow-md min-w-[145px]">
               <Phone className="h-4 w-4 text-white/80" /> Contact Us
             </Link>
-            <Link to="/work" className="flex items-center justify-center gap-3 rounded-[4px] bg-[#cca651] text-white px-7 py-3 text-sm font-medium hover:bg-opacity-90 transition-all shadow-md min-w-[145px]">
+            <Link to="/portfolio" className="flex items-center justify-center gap-3 rounded-[4px] bg-[#cca651] text-white px-7 py-3 text-sm font-medium hover:bg-opacity-90 transition-all shadow-md min-w-[145px]">
               <ImageIcon className="h-4 w-4 text-white/80" /> Portfolio
             </Link>
             <Link to="/services" className="flex items-center justify-center gap-3 rounded-[4px] bg-black/5 backdrop-blur-sm border border-[#cca651] text-[#1a224a] px-7 py-3 text-sm font-semibold hover:bg-white/50 transition-all shadow-sm min-w-[145px]">
@@ -156,7 +156,7 @@ function OurJourney() {
             Today, we are a collective of thinkers, writers, designers and makers delivering meaningful artistic experiences across multiple disciplines.
           </p>
 
-          <Link to="/work" className="inline-flex items-center gap-2 rounded-full bg-[color:var(--royal-deep)] text-white px-8 py-3.5 text-sm font-medium hover:bg-[color:var(--gold)] transition-colors shadow-lg">
+          <Link to="/portfolio" className="inline-flex items-center gap-2 rounded-full bg-[color:var(--royal-deep)] text-white px-8 py-3.5 text-sm font-medium hover:bg-[color:var(--gold)] transition-colors shadow-lg">
             Explore More <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
@@ -317,7 +317,7 @@ function InsideStudio() {
               <img src={item.src} alt={item.alt} loading="lazy" decoding="async" className="h-full w-full object-cover object-center group-hover:scale-110 transition-transform duration-700" />
               {i === images.length - 1 && (
                 <div className="absolute inset-0 bg-black/50 flex items-end justify-center pb-8 backdrop-blur-[2px]">
-                  <Link to="/work" className="inline-flex items-center gap-2 rounded-xl bg-white/10 hover:bg-[color:var(--royal-deep)] backdrop-blur-md border border-white/20 text-white px-6 py-2.5 text-xs tracking-wider uppercase font-medium transition-colors">
+                  <Link to="/portfolio" className="inline-flex items-center gap-2 rounded-xl bg-white/10 hover:bg-[color:var(--royal-deep)] backdrop-blur-md border border-white/20 text-white px-6 py-2.5 text-xs tracking-wider uppercase font-medium transition-colors">
                     Explore More
                   </Link>
                 </div>
@@ -335,7 +335,7 @@ function InsideStudio() {
 function FirstProjectCTA() {
   const cards = [
     { icon: PhoneCall, label: "Contact Us", sub: "Let's Talk", link: "/contact" },
-    { icon: LayoutGrid, label: "Portfolio", sub: "See Our Projects", link: "/work" },
+    { icon: LayoutGrid, label: "Portfolio", sub: "See Our Projects", link: "/portfolio" },
     { icon: Layers, label: "Our Services", sub: "What We Do", link: "/services" },
   ];
 

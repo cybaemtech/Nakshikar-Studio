@@ -20,89 +20,187 @@
   status = 301
   force = true
 
+# 301 Single-Hop Redirects for old filter URLs (?category=...) to clean category routes
 [[redirects]]
   from = "/work"
-  to = "/work/graphics"
+  to = "/portfolio/graphics"
   status = 301
   force = true
   query = {category = "Graphics"}
 
 [[redirects]]
   from = "/work"
-  to = "/work/graphics"
+  to = "/portfolio/graphics"
+  status = 301
+  force = true
+  query = {category = "graphics"}
+
+[[redirects]]
+  from = "/portfolio"
+  to = "/portfolio/graphics"
+  status = 301
+  force = true
+  query = {category = "Graphics"}
+
+[[redirects]]
+  from = "/portfolio"
+  to = "/portfolio/graphics"
   status = 301
   force = true
   query = {category = "graphics"}
 
 [[redirects]]
   from = "/work"
-  to = "/work/wall-design"
+  to = "/portfolio/wall-design"
   status = 301
   force = true
   query = {category = "Wall Design"}
 
 [[redirects]]
   from = "/work"
-  to = "/work/wall-design"
+  to = "/portfolio/wall-design"
+  status = 301
+  force = true
+  query = {category = "wall-design"}
+
+[[redirects]]
+  from = "/portfolio"
+  to = "/portfolio/wall-design"
+  status = 301
+  force = true
+  query = {category = "Wall Design"}
+
+[[redirects]]
+  from = "/portfolio"
+  to = "/portfolio/wall-design"
   status = 301
   force = true
   query = {category = "wall-design"}
 
 [[redirects]]
   from = "/work"
-  to = "/work/paintings"
+  to = "/portfolio/paintings"
   status = 301
   force = true
   query = {category = "Paintings"}
 
 [[redirects]]
   from = "/work"
-  to = "/work/paintings"
+  to = "/portfolio/paintings"
+  status = 301
+  force = true
+  query = {category = "paintings"}
+
+[[redirects]]
+  from = "/portfolio"
+  to = "/portfolio/paintings"
+  status = 301
+  force = true
+  query = {category = "Paintings"}
+
+[[redirects]]
+  from = "/portfolio"
+  to = "/portfolio/paintings"
   status = 301
   force = true
   query = {category = "paintings"}
 
 [[redirects]]
   from = "/work"
-  to = "/work/murals"
+  to = "/portfolio/murals"
   status = 301
   force = true
   query = {category = "Murals"}
 
 [[redirects]]
   from = "/work"
-  to = "/work/murals"
+  to = "/portfolio/murals"
+  status = 301
+  force = true
+  query = {category = "murals"}
+
+[[redirects]]
+  from = "/portfolio"
+  to = "/portfolio/murals"
+  status = 301
+  force = true
+  query = {category = "Murals"}
+
+[[redirects]]
+  from = "/portfolio"
+  to = "/portfolio/murals"
   status = 301
   force = true
   query = {category = "murals"}
 
 [[redirects]]
   from = "/work"
-  to = "/work/nameplates"
+  to = "/portfolio/nameplates"
   status = 301
   force = true
   query = {category = "Nameplates"}
 
 [[redirects]]
   from = "/work"
-  to = "/work/nameplates"
+  to = "/portfolio/nameplates"
+  status = 301
+  force = true
+  query = {category = "nameplates"}
+
+[[redirects]]
+  from = "/portfolio"
+  to = "/portfolio/nameplates"
+  status = 301
+  force = true
+  query = {category = "Nameplates"}
+
+[[redirects]]
+  from = "/portfolio"
+  to = "/portfolio/nameplates"
   status = 301
   force = true
   query = {category = "nameplates"}
 
 [[redirects]]
   from = "/work"
-  to = "/work/interior-support"
+  to = "/portfolio/interior-support"
   status = 301
   force = true
   query = {category = "Interior Support"}
 
 [[redirects]]
   from = "/work"
-  to = "/work/interior-support"
+  to = "/portfolio/interior-support"
   status = 301
   force = true
   query = {category = "interior-support"}
+
+[[redirects]]
+  from = "/portfolio"
+  to = "/portfolio/interior-support"
+  status = 301
+  force = true
+  query = {category = "Interior Support"}
+
+[[redirects]]
+  from = "/portfolio"
+  to = "/portfolio/interior-support"
+  status = 301
+  force = true
+  query = {category = "interior-support"}
+
+# 301 Redirects from old /work to /portfolio
+[[redirects]]
+  from = "/work"
+  to = "/portfolio"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/work/*"
+  to = "/portfolio/:splat"
+  status = 301
+  force = true
 
 [[redirects]]
   from = "/api/send-email"

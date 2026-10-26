@@ -11,10 +11,12 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as WorkRouteImport } from './routes/work'
 import { Route as ServicesRouteImport } from './routes/services'
+import { Route as PortfolioRouteImport } from './routes/portfolio'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as WorkCategoryRouteImport } from './routes/work_.$category'
+import { Route as PortfolioCategoryRouteImport } from './routes/portfolio_.$category'
 
 const WorkRoute = WorkRouteImport.update({
   id: '/work',
@@ -24,6 +26,11 @@ const WorkRoute = WorkRouteImport.update({
 const ServicesRoute = ServicesRouteImport.update({
   id: '/services',
   path: '/services',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PortfolioRoute = PortfolioRouteImport.update({
+  id: '/portfolio',
+  path: '/portfolio',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -46,21 +53,30 @@ const WorkCategoryRoute = WorkCategoryRouteImport.update({
   path: '/work/$category',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PortfolioCategoryRoute = PortfolioCategoryRouteImport.update({
+  id: '/portfolio_/$category',
+  path: '/portfolio/$category',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
+  '/portfolio': typeof PortfolioRoute
   '/services': typeof ServicesRoute
   '/work': typeof WorkRoute
+  '/portfolio/$category': typeof PortfolioCategoryRoute
   '/work/$category': typeof WorkCategoryRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
+  '/portfolio': typeof PortfolioRoute
   '/services': typeof ServicesRoute
   '/work': typeof WorkRoute
+  '/portfolio/$category': typeof PortfolioCategoryRoute
   '/work/$category': typeof WorkCategoryRoute
 }
 export interface FileRoutesById {
@@ -68,23 +84,42 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
+  '/portfolio': typeof PortfolioRoute
   '/services': typeof ServicesRoute
   '/work': typeof WorkRoute
+  '/portfolio_/$category': typeof PortfolioCategoryRoute
   '/work_/$category': typeof WorkCategoryRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/about' | '/contact' | '/services' | '/work' | '/work/$category'
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/portfolio'
+    | '/services'
+    | '/work'
+    | '/portfolio/$category'
+    | '/work/$category'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/contact' | '/services' | '/work' | '/work/$category'
+  to:
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/portfolio'
+    | '/services'
+    | '/work'
+    | '/portfolio/$category'
+    | '/work/$category'
   id:
     | '__root__'
     | '/'
     | '/about'
     | '/contact'
+    | '/portfolio'
     | '/services'
     | '/work'
+    | '/portfolio_/$category'
     | '/work_/$category'
   fileRoutesById: FileRoutesById
 }
@@ -92,8 +127,10 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   ContactRoute: typeof ContactRoute
+  PortfolioRoute: typeof PortfolioRoute
   ServicesRoute: typeof ServicesRoute
   WorkRoute: typeof WorkRoute
+  PortfolioCategoryRoute: typeof PortfolioCategoryRoute
   WorkCategoryRoute: typeof WorkCategoryRoute
 }
 
@@ -111,6 +148,13 @@ declare module '@tanstack/react-router' {
       path: '/services'
       fullPath: '/services'
       preLoaderRoute: typeof ServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/portfolio': {
+      id: '/portfolio'
+      path: '/portfolio'
+      fullPath: '/portfolio'
+      preLoaderRoute: typeof PortfolioRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -141,6 +185,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WorkCategoryRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/portfolio_/$category': {
+      id: '/portfolio_/$category'
+      path: '/portfolio/$category'
+      fullPath: '/portfolio/$category'
+      preLoaderRoute: typeof PortfolioCategoryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -148,8 +199,10 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   ContactRoute: ContactRoute,
+  PortfolioRoute: PortfolioRoute,
   ServicesRoute: ServicesRoute,
   WorkRoute: WorkRoute,
+  PortfolioCategoryRoute: PortfolioCategoryRoute,
   WorkCategoryRoute: WorkCategoryRoute,
 }
 export const routeTree = rootRouteImport

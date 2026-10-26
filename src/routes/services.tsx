@@ -143,7 +143,7 @@ function Services() {
                   transition={{ duration: 0.6, delay: (i % 3) * 0.08 }}
                 >
                   <Link
-                    to="/work/$category"
+                    to="/portfolio/$category"
                     params={{ category: categoryToSlug(s.category) }}
                     className="group relative flex flex-col h-full rounded-3xl overflow-hidden bg-[color:var(--cream)] border border-[color:var(--gold)]/20 hover:border-[color:var(--gold)]/60 transition-all duration-300 hover:shadow-luxe"
                   >

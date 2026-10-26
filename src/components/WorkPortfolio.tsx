@@ -6,6 +6,7 @@ import { SectionEyebrow } from "@/components/SectionEyebrow";
 import { LazyImage } from "@/components/LazyImage";
 import { ALL_WORKS, CATEGORIES, type WorkItem, type Category } from "@/data/worksData";
 import { categoryToSlug } from "@/lib/categorySlugs";
+import { CATEGORY_SEO_MAP, PORTFOLIO_OVERVIEW_SEO } from "@/data/portfolioCategorySeo";
 
 import logoF1 from "@/assets/Nakshikar logos image/Logo F 1.jpg";
 import logoF2 from "@/assets/Nakshikar logos image/Logo F 2.jpg";
@@ -140,8 +141,9 @@ export function WorkPortfolio({
     setCurrentPage(1);
 
     const slug = categoryToSlug(newCat);
-    navigate({
-      to: `/work/${slug}` as any,
+    (navigate as any)({
+      to: "/portfolio/$category",
+      params: { category: slug },
       search: {},
       replace: false,
     });
@@ -153,14 +155,15 @@ export function WorkPortfolio({
 
     const slug = categoryToSlug(activeCategory);
     if (isCategoryRoute) {
-      navigate({
-        to: `/work/${slug}` as any,
+      (navigate as any)({
+        to: "/portfolio/$category",
+        params: { category: slug },
         search: newPage > 1 ? { page: newPage } : {},
         replace: true,
       });
     } else {
-      navigate({
-        to: "/work",
+      (navigate as any)({
+        to: "/portfolio",
         search: newPage > 1 ? { page: newPage } : {},
         replace: true,
       });
@@ -191,6 +194,10 @@ export function WorkPortfolio({
     return pages;
   };
 
+  const currentSeo = isCategoryRoute
+    ? CATEGORY_SEO_MAP[activeCategory] || PORTFOLIO_OVERVIEW_SEO
+    : PORTFOLIO_OVERVIEW_SEO;
+
   return (
     <div className="bg-background text-foreground min-h-screen pt-24">
       <section className="pt-8 pb-20 sm:pt-12 sm:pb-28 bg-[color:var(--cream)] relative overflow-hidden min-h-[calc(100vh-6rem)]">
@@ -199,17 +206,8 @@ export function WorkPortfolio({
           {/* Header & Filter Tabs */}
           <div
             ref={galleryRef}
-            className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-12 scroll-mt-32"
+            className="flex flex-col gap-8 mb-12 scroll-mt-32"
           >
-            <div>
-              <SectionEyebrow text="Portfolio" />
-              <h1 className="font-display text-[clamp(2.2rem,5.4vw,4.6rem)] leading-[1.02] tracking-tight text-[color:var(--charcoal)]">
-                A gallery of{" "}
-                <span className="italic text-gradient-gold font-normal">our finest</span>{" "}
-                work.
-              </h1>
-            </div>
-
             {/* Category Filter Pills matching screenshot styling */}
             <div className="flex flex-col gap-4">
               <div className="flex flex-wrap gap-2.5 items-center">
@@ -265,6 +263,16 @@ export function WorkPortfolio({
                   </motion.div>
                 )}
               </AnimatePresence>
+            </div>
+
+            <div className="max-w-4xl">
+              <SectionEyebrow text={currentSeo.eyebrow} />
+              <h1 className="font-display text-[clamp(1.9rem,3.6vw,3.2rem)] leading-[1.1] tracking-tight text-[color:var(--charcoal)] mb-3">
+                {currentSeo.h1}
+              </h1>
+              <p className="text-muted-foreground text-sm sm:text-base leading-relaxed max-w-3xl">
+                {currentSeo.introParagraph}
+              </p>
             </div>
           </div>
 

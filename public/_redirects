@@ -3,19 +3,41 @@ http://nakshikarsstudio.com/*  https://nakshikarsstudio.com/:splat  301!
 http://www.nakshikarsstudio.com/*  https://nakshikarsstudio.com/:splat  301!
 https://www.nakshikarsstudio.com/*  https://nakshikarsstudio.com/:splat  301!
 
-/work category=Graphics /work/graphics 301!
-/work category=graphics /work/graphics 301!
-/work category=Wall%20Design /work/wall-design 301!
-/work category=wall-design /work/wall-design 301!
-/work category=Paintings /work/paintings 301!
-/work category=paintings /work/paintings 301!
-/work category=Murals /work/murals 301!
-/work category=murals /work/murals 301!
-/work category=Nameplates /work/nameplates 301!
-/work category=nameplates /work/nameplates 301!
-/work category=Interior%20Support /work/interior-support 301!
-/work category=interior-support /work/interior-support 301!
+# 301 Single-Hop Redirects for old filter URLs (?category=...) to clean category routes
+/work category=Graphics /portfolio/graphics 301!
+/work category=graphics /portfolio/graphics 301!
+/portfolio category=Graphics /portfolio/graphics 301!
+/portfolio category=graphics /portfolio/graphics 301!
 
+/work category=Wall%20Design /portfolio/wall-design 301!
+/work category=wall-design /portfolio/wall-design 301!
+/portfolio category=Wall%20Design /portfolio/wall-design 301!
+/portfolio category=wall-design /portfolio/wall-design 301!
+
+/work category=Paintings /portfolio/paintings 301!
+/work category=paintings /portfolio/paintings 301!
+/portfolio category=Paintings /portfolio/paintings 301!
+/portfolio category=paintings /portfolio/paintings 301!
+
+/work category=Murals /portfolio/murals 301!
+/work category=murals /portfolio/murals 301!
+/portfolio category=Murals /portfolio/murals 301!
+/portfolio category=murals /portfolio/murals 301!
+
+/work category=Nameplates /portfolio/nameplates 301!
+/work category=nameplates /portfolio/nameplates 301!
+/portfolio category=Nameplates /portfolio/nameplates 301!
+/portfolio category=nameplates /portfolio/nameplates 301!
+
+/work category=Interior%20Support /portfolio/interior-support 301!
+/work category=interior-support /portfolio/interior-support 301!
+/portfolio category=Interior%20Support /portfolio/interior-support 301!
+/portfolio category=interior-support /portfolio/interior-support 301!
+
+# 301 Redirects from old /work to /portfolio
+/work /portfolio 301!
+/work/* /portfolio/:splat 301!
+
+# API and SPA fallback
 /api/send-email  /.netlify/functions/send-email  200
 /*  /index.html  200
-

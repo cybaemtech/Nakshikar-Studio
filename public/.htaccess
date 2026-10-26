@@ -14,24 +14,28 @@
   # Route /api/send-email (with optional trailing slash) directly to the PHP script
   RewriteRule ^api/send-email/?$ /api/send-email.php [L]
 
-  # 301 Redirects for /work?category=... query param URLs
+  # 301 Single-Hop Redirects for old filter URLs (?category=...) to clean category routes
   RewriteCond %{QUERY_STRING} ^category=(Graphics|graphics)$ [NC]
-  RewriteRule ^work/?$ /work/graphics? [R=301,L]
+  RewriteRule ^(work|portfolio)/?$ https://nakshikarsstudio.com/portfolio/graphics? [R=301,L]
 
   RewriteCond %{QUERY_STRING} ^category=(Wall%20Design|wall-design)$ [NC]
-  RewriteRule ^work/?$ /work/wall-design? [R=301,L]
+  RewriteRule ^(work|portfolio)/?$ https://nakshikarsstudio.com/portfolio/wall-design? [R=301,L]
 
   RewriteCond %{QUERY_STRING} ^category=(Paintings|paintings)$ [NC]
-  RewriteRule ^work/?$ /work/paintings? [R=301,L]
+  RewriteRule ^(work|portfolio)/?$ https://nakshikarsstudio.com/portfolio/paintings? [R=301,L]
 
   RewriteCond %{QUERY_STRING} ^category=(Murals|murals)$ [NC]
-  RewriteRule ^work/?$ /work/murals? [R=301,L]
+  RewriteRule ^(work|portfolio)/?$ https://nakshikarsstudio.com/portfolio/murals? [R=301,L]
 
   RewriteCond %{QUERY_STRING} ^category=(Nameplates|nameplates)$ [NC]
-  RewriteRule ^work/?$ /work/nameplates? [R=301,L]
+  RewriteRule ^(work|portfolio)/?$ https://nakshikarsstudio.com/portfolio/nameplates? [R=301,L]
 
   RewriteCond %{QUERY_STRING} ^category=(Interior%20Support|interior-support)$ [NC]
-  RewriteRule ^work/?$ /work/interior-support? [R=301,L]
+  RewriteRule ^(work|portfolio)/?$ https://nakshikarsstudio.com/portfolio/interior-support? [R=301,L]
+
+  # 301 Redirects from old /work and /work/* paths to /portfolio
+  RewriteRule ^work/?$ https://nakshikarsstudio.com/portfolio [R=301,L]
+  RewriteRule ^work/(.*)$ https://nakshikarsstudio.com/portfolio/$1 [R=301,L]
 
   # Allow direct access to existing static files, images, and directories
   RewriteCond %{REQUEST_FILENAME} -f [OR]

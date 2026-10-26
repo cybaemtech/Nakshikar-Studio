@@ -161,9 +161,9 @@ function Hero() {
             transition={{ delay: 1.05, duration: 0.8 }}
             className="flex flex-wrap items-center gap-4"
           >
-            <a href="/work" className="group inline-flex items-center gap-2 rounded-full bg-royal-gradient text-white px-7 py-4 text-[12px] tracking-[0.22em] uppercase font-medium shadow-luxe hover:scale-[1.03] transition-transform">
+            <Link to="/portfolio" className="group inline-flex items-center gap-2 rounded-full bg-royal-gradient text-white px-7 py-4 text-[12px] tracking-[0.22em] uppercase font-medium shadow-luxe hover:scale-[1.03] transition-transform">
               Explore Portfolio <ArrowUpRight className="h-4 w-4 transition-transform group-hover:rotate-45" />
-            </a>
+            </Link>
             <a href="/services" className="group inline-flex items-center gap-2 rounded-full border border-[color:var(--gold)]/60 px-7 py-4 text-[12px] tracking-[0.22em] uppercase font-medium text-[color:var(--royal-deep)] hover:bg-[color:var(--gold)]/10 transition-colors">
               Our Services
             </a>
@@ -301,7 +301,7 @@ function WhatWeCreate() {
               transition={{ duration: 0.7, delay: (i % 4) * 0.07 }}
             >
               <Link
-                to="/work/$category"
+                to="/portfolio/$category"
                 params={{ category: categoryToSlug(c.category) }}
                 className="group relative rounded-3xl overflow-hidden aspect-[4/5] sm:aspect-[4/5] lg:aspect-square block shadow-soft hover:shadow-luxe transition-shadow"
               >
