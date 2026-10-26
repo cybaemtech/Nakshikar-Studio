@@ -164,8 +164,8 @@ function Hero() {
             <Link to="/portfolio" className="group inline-flex items-center gap-2 rounded-full bg-royal-gradient text-white px-7 py-4 text-[12px] tracking-[0.22em] uppercase font-medium shadow-luxe hover:scale-[1.03] transition-transform">
               Explore Portfolio <ArrowUpRight className="h-4 w-4 transition-transform group-hover:rotate-45" />
             </Link>
-            <a href="/services" className="group inline-flex items-center gap-2 rounded-full border border-[color:var(--gold)]/60 px-7 py-4 text-[12px] tracking-[0.22em] uppercase font-medium text-[color:var(--royal-deep)] hover:bg-[color:var(--gold)]/10 transition-colors">
-              Our Services
+            <a href="/contact" className="group inline-flex items-center gap-2 rounded-full border border-[color:var(--gold)]/60 px-7 py-4 text-[12px] tracking-[0.22em] uppercase font-medium text-[color:var(--royal-deep)] hover:bg-[color:var(--gold)]/10 transition-colors">
+              Contact Us
             </a>
           </motion.div>
 
@@ -264,8 +264,6 @@ function Marquee() {
   );
 }
 
-/* ------------------------------ WHAT WE CREATE ------------------------------ */
-
 const CATEGORIES = [
   { label: "Graphics", category: "Graphics", img: serviceGraphics, sub: "Logo • Identity • Branding" },
   { label: "Wall Design", category: "Wall Design", img: serviceWallDesign, sub: "Custom • Textured • 3D" },
@@ -291,14 +289,14 @@ function WhatWeCreate() {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {CATEGORIES.map((c, i) => (
             <motion.div
               key={c.label}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.7, delay: (i % 4) * 0.07 }}
+              transition={{ duration: 0.7, delay: (i % 3) * 0.08 }}
             >
               <Link
                 to="/portfolio/$category"

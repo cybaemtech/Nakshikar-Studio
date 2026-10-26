@@ -47,6 +47,22 @@ function PinterestIcon(props: React.SVGProps<SVGSVGElement>) {
   );
 }
 
+function LocationPinIcon(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" {...props}>
+      <mask id="footer-pin-hole-mask">
+        <rect width="24" height="24" fill="white" />
+        <circle cx="12" cy="9.5" r="3.2" fill="black" />
+      </mask>
+      <path
+        d="M12 2C7.8 2 4.4 5.4 4.4 9.6c0 5.4 6.8 11.5 7.1 11.75.28.25.72.25 1 0 .3-.25 7.1-6.35 7.1-11.75C19.6 5.4 16.2 2 12 2Z"
+        fill="currentColor"
+        mask="url(#footer-pin-hole-mask)"
+      />
+    </svg>
+  );
+}
+
 const SOCIAL_LINKS = [
   {
     name: "Facebook",
@@ -96,6 +112,22 @@ export function Footer() {
             <p className="text-white/70 leading-relaxed max-w-md">
               A premium art & design studio crafting heirloom paintings, murals, sculptures, signages, branding and digital experiences.
             </p>
+
+            <a
+              href="https://maps.google.com/?q=Office+No+A+22+World+Of+Mother+behind+JAI+GANESH+VISION+near+Aagan+hotel+Shubhashri+Residency+Ganga+Nagar+Akurdi+Pimpri-Chinchwad+Maharashtra+411035"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="View studio address on Google Maps"
+              className="flex items-center gap-3.5 group max-w-md text-left"
+            >
+              <div className="shrink-0 text-[color:var(--gold)] transition-transform group-hover:scale-110">
+                <LocationPinIcon className="h-7 w-7 text-[color:var(--gold)]" />
+              </div>
+              <div className="border-l border-white/20 pl-3.5 text-xs sm:text-[13px] text-white/75 group-hover:text-white leading-relaxed transition-colors">
+                Office: No. A 22, World Of Mother, behind Jai Ganesh Vision, near Aagan Hotel, Shubhashri Residency, Ganga Nagar, Akurdi, Pimpri-Chinchwad, Maharashtra 411035
+              </div>
+            </a>
+
             <div className="flex items-center gap-3">
               {SOCIAL_LINKS.map((social) => {
                 const Icon = social.icon;
