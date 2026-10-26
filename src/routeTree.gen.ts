@@ -16,6 +16,7 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as WorkCategoryRouteImport } from './routes/work_.$category'
+import { Route as ServicesCategoryRouteImport } from './routes/services_.$category'
 import { Route as PortfolioCategoryRouteImport } from './routes/portfolio_.$category'
 
 const WorkRoute = WorkRouteImport.update({
@@ -53,6 +54,11 @@ const WorkCategoryRoute = WorkCategoryRouteImport.update({
   path: '/work/$category',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ServicesCategoryRoute = ServicesCategoryRouteImport.update({
+  id: '/services_/$category',
+  path: '/services/$category',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PortfolioCategoryRoute = PortfolioCategoryRouteImport.update({
   id: '/portfolio_/$category',
   path: '/portfolio/$category',
@@ -67,6 +73,7 @@ export interface FileRoutesByFullPath {
   '/services': typeof ServicesRoute
   '/work': typeof WorkRoute
   '/portfolio/$category': typeof PortfolioCategoryRoute
+  '/services/$category': typeof ServicesCategoryRoute
   '/work/$category': typeof WorkCategoryRoute
 }
 export interface FileRoutesByTo {
@@ -77,6 +84,7 @@ export interface FileRoutesByTo {
   '/services': typeof ServicesRoute
   '/work': typeof WorkRoute
   '/portfolio/$category': typeof PortfolioCategoryRoute
+  '/services/$category': typeof ServicesCategoryRoute
   '/work/$category': typeof WorkCategoryRoute
 }
 export interface FileRoutesById {
@@ -88,6 +96,7 @@ export interface FileRoutesById {
   '/services': typeof ServicesRoute
   '/work': typeof WorkRoute
   '/portfolio_/$category': typeof PortfolioCategoryRoute
+  '/services_/$category': typeof ServicesCategoryRoute
   '/work_/$category': typeof WorkCategoryRoute
 }
 export interface FileRouteTypes {
@@ -100,6 +109,7 @@ export interface FileRouteTypes {
     | '/services'
     | '/work'
     | '/portfolio/$category'
+    | '/services/$category'
     | '/work/$category'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -110,6 +120,7 @@ export interface FileRouteTypes {
     | '/services'
     | '/work'
     | '/portfolio/$category'
+    | '/services/$category'
     | '/work/$category'
   id:
     | '__root__'
@@ -120,6 +131,7 @@ export interface FileRouteTypes {
     | '/services'
     | '/work'
     | '/portfolio_/$category'
+    | '/services_/$category'
     | '/work_/$category'
   fileRoutesById: FileRoutesById
 }
@@ -131,6 +143,7 @@ export interface RootRouteChildren {
   ServicesRoute: typeof ServicesRoute
   WorkRoute: typeof WorkRoute
   PortfolioCategoryRoute: typeof PortfolioCategoryRoute
+  ServicesCategoryRoute: typeof ServicesCategoryRoute
   WorkCategoryRoute: typeof WorkCategoryRoute
 }
 
@@ -185,6 +198,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WorkCategoryRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/services_/$category': {
+      id: '/services_/$category'
+      path: '/services/$category'
+      fullPath: '/services/$category'
+      preLoaderRoute: typeof ServicesCategoryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/portfolio_/$category': {
       id: '/portfolio_/$category'
       path: '/portfolio/$category'
@@ -203,6 +223,7 @@ const rootRouteChildren: RootRouteChildren = {
   ServicesRoute: ServicesRoute,
   WorkRoute: WorkRoute,
   PortfolioCategoryRoute: PortfolioCategoryRoute,
+  ServicesCategoryRoute: ServicesCategoryRoute,
   WorkCategoryRoute: WorkCategoryRoute,
 }
 export const routeTree = rootRouteImport

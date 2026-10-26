@@ -143,7 +143,7 @@ function Services() {
                   transition={{ duration: 0.6, delay: (i % 3) * 0.08 }}
                 >
                   <Link
-                    to="/portfolio/$category"
+                    to="/services/$category"
                     params={{ category: categoryToSlug(s.category) }}
                     className="group relative flex flex-col h-full rounded-3xl overflow-hidden bg-[color:var(--cream)] border border-[color:var(--gold)]/20 hover:border-[color:var(--gold)]/60 transition-all duration-300 hover:shadow-luxe"
                   >
@@ -177,7 +177,7 @@ function Services() {
                         </ul>
                       </div>
                       <div className="flex items-center justify-between text-[11px] tracking-[0.22em] uppercase text-[color:var(--royal-deep)] font-semibold border-t border-[color:var(--gold)]/20 pt-4">
-                        <span>View {s.category} Portfolio</span>
+                        <span>Explore {s.category} Services</span>
                         <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1 text-[color:var(--gold)]" />
                       </div>
                     </div>
