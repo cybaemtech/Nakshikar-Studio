@@ -198,29 +198,28 @@ export function WorkPortfolio({
       <section className="pt-8 pb-20 sm:pt-12 sm:pb-28 bg-[color:var(--cream)] relative overflow-hidden min-h-[calc(100vh-6rem)]">
         <div className="absolute right-0 top-40 h-96 w-96 rounded-full bg-royal-gradient opacity-15 blur-3xl" />
         <div className="mx-auto max-w-[1500px] px-5 sm:px-[6%] lg:px-[8%] relative z-10">
-          {/* Header & Filter Tabs matching reference design */}
+          {/* Header & Filter Tabs */}
           <div
             ref={galleryRef}
-            className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-12 scroll-mt-32"
+            className="flex flex-col gap-6 sm:gap-7 mb-10 scroll-mt-32"
           >
-            {/* Left: Title */}
-            <div className="max-w-xl">
+            {/* Title */}
+            <div>
               <div className="text-[11px] font-bold tracking-[0.25em] uppercase text-[color:var(--gold)] mb-3">
                 Portfolio
               </div>
-              <h1 className="font-display text-[clamp(2.4rem,4.5vw,4.5rem)] leading-[1.05] tracking-tight text-[color:var(--charcoal)]">
+              <h1 className="font-display text-[clamp(2.2rem,4.2vw,4.2rem)] leading-[1.15] tracking-tight text-[color:var(--charcoal)]">
                 A gallery of{" "}
                 <span className="italic font-serif text-gradient-gold font-normal">
                   our finest
-                </span>
-                <br />
+                </span>{" "}
                 work.
               </h1>
             </div>
 
-            {/* Right: Category Filter Pills */}
-            <div className="flex flex-col gap-3 lg:items-end">
-              <div className="flex flex-wrap gap-2.5 items-center max-w-xl lg:justify-end">
+            {/* Category Filter Pills */}
+            <div className="flex flex-col gap-3">
+              <div className="flex flex-wrap gap-2.5 items-center">
                 {CATEGORIES.map((cat) => {
                   const isActive = activeCategory === cat;
                   return (
