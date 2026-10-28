@@ -13,6 +13,7 @@ import { Route as WorkRouteImport } from './routes/work'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as PortfolioRouteImport } from './routes/portfolio'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as ArtStudioInPuneRouteImport } from './routes/art-studio-in-pune'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as WorkCategoryRouteImport } from './routes/work_.$category'
@@ -37,6 +38,11 @@ const PortfolioRoute = PortfolioRouteImport.update({
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ArtStudioInPuneRoute = ArtStudioInPuneRouteImport.update({
+  id: '/art-studio-in-pune',
+  path: '/art-studio-in-pune',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutRoute = AboutRouteImport.update({
@@ -68,6 +74,7 @@ const PortfolioCategoryRoute = PortfolioCategoryRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/art-studio-in-pune': typeof ArtStudioInPuneRoute
   '/contact': typeof ContactRoute
   '/portfolio': typeof PortfolioRoute
   '/services': typeof ServicesRoute
@@ -79,6 +86,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/art-studio-in-pune': typeof ArtStudioInPuneRoute
   '/contact': typeof ContactRoute
   '/portfolio': typeof PortfolioRoute
   '/services': typeof ServicesRoute
@@ -91,6 +99,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/art-studio-in-pune': typeof ArtStudioInPuneRoute
   '/contact': typeof ContactRoute
   '/portfolio': typeof PortfolioRoute
   '/services': typeof ServicesRoute
@@ -104,6 +113,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
+    | '/art-studio-in-pune'
     | '/contact'
     | '/portfolio'
     | '/services'
@@ -115,6 +125,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/about'
+    | '/art-studio-in-pune'
     | '/contact'
     | '/portfolio'
     | '/services'
@@ -126,6 +137,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/about'
+    | '/art-studio-in-pune'
     | '/contact'
     | '/portfolio'
     | '/services'
@@ -138,6 +150,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  ArtStudioInPuneRoute: typeof ArtStudioInPuneRoute
   ContactRoute: typeof ContactRoute
   PortfolioRoute: typeof PortfolioRoute
   ServicesRoute: typeof ServicesRoute
@@ -175,6 +188,13 @@ declare module '@tanstack/react-router' {
       path: '/contact'
       fullPath: '/contact'
       preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/art-studio-in-pune': {
+      id: '/art-studio-in-pune'
+      path: '/art-studio-in-pune'
+      fullPath: '/art-studio-in-pune'
+      preLoaderRoute: typeof ArtStudioInPuneRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about': {
@@ -218,6 +238,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  ArtStudioInPuneRoute: ArtStudioInPuneRoute,
   ContactRoute: ContactRoute,
   PortfolioRoute: PortfolioRoute,
   ServicesRoute: ServicesRoute,
