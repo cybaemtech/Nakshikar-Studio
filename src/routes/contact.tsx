@@ -129,11 +129,10 @@ function StatusPopup({
       >
         <div className="relative bg-white rounded-[2rem] overflow-hidden shadow-[0_32px_80px_rgba(0,0,0,0.22)]">
           <div
-            className={`h-1.5 w-full ${
-              isSuccess
+            className={`h-1.5 w-full ${isSuccess
                 ? "bg-gold-gradient"
                 : "bg-gradient-to-r from-rose-400 to-rose-600"
-            }`}
+              }`}
           />
 
           <button
@@ -153,11 +152,10 @@ function StatusPopup({
                 damping: 20,
                 delay: 0.12,
               }}
-              className={`w-20 h-20 mx-auto rounded-full flex items-center justify-center ${
-                isSuccess
+              className={`w-20 h-20 mx-auto rounded-full flex items-center justify-center ${isSuccess
                   ? "bg-[color:var(--gold)]/10 border-2 border-[color:var(--gold)]/30"
                   : "bg-rose-50 border-2 border-rose-200"
-              }`}
+                }`}
             >
               {isSuccess ? (
                 <CheckCircle2
@@ -612,14 +610,14 @@ function Contact() {
           <div className="space-y-4 pt-2">
             <div className="rounded-3xl overflow-hidden border border-gray-200/90 shadow-luxe bg-white h-[380px] sm:h-[450px] w-full relative">
               <iframe
-                title="Nakshikar's Studio Location Map"
-                src="https://maps.google.com/maps?q=World+Of+Mother,+Akurdi,+Pimpri-Chinchwad,+Maharashtra+411035&t=&z=16&ie=UTF8&iwloc=&output=embed"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3780.3728826955303!2d73.7811045751948!3d18.647255982471012!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2b99d1ab9075d%3A0xb8061b85586d7fd2!2sNakshikar's%20studio!5e0!3m2!1sen!2sin!4v1793084270215!5m2!1sen!2sin"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
-                allowFullScreen={false}
+                allowFullScreen
                 loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
+                referrerPolicy="strict-origin-when-cross-origin"
+                title="Nakshikar's Studio Google Map Location"
                 className="w-full h-full"
               />
             </div>
