@@ -21,8 +21,16 @@ export const Route = createFileRoute("/services")({
       { property: "og:type", content: "website" },
       { property: "og:title", content: "Murals, Paintings, Wall Art & Design Services | Nakshikar's Studio" },
       { property: "og:description", content: "We design custom murals, sculptures, wall art, paintings & nameplates for homes, offices, and cultural spaces in Pune, Pimpri Chinchwad, and Mumbai." },
-      { property: "og:image", content: "https://nakshikarsstudio.com/logo.png" },
+      { property: "og:image", content: "https://nakshikarsstudio.com/og-image.jpg" },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      { property: "og:image:type", content: "image/jpeg" },
       { property: "og:url", content: "https://nakshikarsstudio.com/services" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Murals, Paintings, Wall Art & Design Services | Nakshikar's Studio" },
+      { name: "twitter:description", content: "We design custom murals, sculptures, wall art, paintings & nameplates for homes, offices, and cultural spaces in Pune, Pimpri Chinchwad, and Mumbai." },
+      { name: "twitter:image", content: "https://nakshikarsstudio.com/og-image.jpg" },
+      { name: "twitter:image:alt", content: "Murals, Paintings, Wall Art & Design Services | Nakshikar's Studio" },
       {
         "script:ld+json": {
           "@context": "https://schema.org",
@@ -167,7 +175,7 @@ function Services() {
                     </div>
                     <div className="p-6 flex flex-col justify-between flex-1">
                       <div>
-                        <h3 className="font-display text-2xl mb-3 text-[color:var(--charcoal)]">{s.title}</h3>
+                        <h2 className="font-display text-2xl mb-3 text-[color:var(--charcoal)]">{s.title}</h2>
                         <ul className="space-y-2 text-sm text-muted-foreground mb-6">
                           {s.items.map((it) => (
                             <li key={it} className="flex items-center gap-2">

@@ -48,8 +48,16 @@ export const Route = createFileRoute("/portfolio_/$category")({
         { property: "og:type", content: "website" },
         { property: "og:title", seoTitle: seo.title, content: seo.title },
         { property: "og:description", content: seo.metaDescription },
-        { property: "og:image", content: "https://nakshikarsstudio.com/logo.png" },
+        { property: "og:image", content: "https://nakshikarsstudio.com/og-image.jpg" },
+        { property: "og:image:width", content: "1200" },
+        { property: "og:image:height", content: "630" },
+        { property: "og:image:type", content: "image/jpeg" },
         { property: "og:url", content: canonicalUrl },
+        { name: "twitter:card", content: "summary_large_image" },
+        { name: "twitter:title", content: seo.title },
+        { name: "twitter:description", content: seo.metaDescription },
+        { name: "twitter:image", content: "https://nakshikarsstudio.com/og-image.jpg" },
+        { name: "twitter:image:alt", content: seo.title },
         {
           "script:ld+json": {
             "@context": "https://schema.org",

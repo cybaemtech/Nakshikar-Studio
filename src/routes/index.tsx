@@ -7,11 +7,11 @@ import heroMural from "@/assets/services/services/hero-mural.webp";
 import heroMurti from "@/assets/services/Fish.webp";
 import heroPainting from "@/assets/services/services/hero-painting.webp";
 import heroNameplate from "@/assets/services/services/nameplate.webp";
-import print from "@/assets/print.jpg";
-import graphic from "@/assets/graphic.jpg";
-import uiux from "@/assets/uiux.jpg";
-import wallart from "@/assets/wallart.jpg";
-import processImg from "@/assets/girl.png";
+
+
+
+
+import processImg from "@/assets/girl.webp";
 
 import serviceGraphics from "@/assets/services/Ramalay2.webp";
 import serviceWallDesign from "@/assets/services/services/walldesign.webp";
@@ -33,12 +33,16 @@ export const Route = createFileRoute("/")({
       { property: "og:type", content: "website" },
       { property: "og:title", content: "Custom Art & Painting Studio in Pune | Nakshikars Studio" },
       { property: "og:description", content: "We create custom paintings, wall murals, sculptures, signage and interior art for homes, hotels, offices and brands across Pune, Pimpri Chinchwad and Mumbai" },
-      { property: "og:image", content: "https://nakshikarsstudio.com/logo.png" },
+      { property: "og:image", content: "https://nakshikarsstudio.com/og-image.jpg" },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      { property: "og:image:type", content: "image/jpeg" },
       { property: "og:url", content: "https://nakshikarsstudio.com/" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Custom Art & Painting Studio in Pune | Nakshikars Studio" },
       { name: "twitter:description", content: "We create custom paintings, wall murals, sculptures, signage and interior art for homes, hotels, offices and brands across Pune, Pimpri Chinchwad and Mumbai" },
-      { name: "twitter:image", content: "https://nakshikarsstudio.com/logo.png" },
+      { name: "twitter:image", content: "https://nakshikarsstudio.com/og-image.jpg" },
+      { name: "twitter:image:alt", content: "Nakshikar's Studio - Custom Art & Painting Studio in Pune" },
       {
         "script:ld+json": {
           "@context": "https://schema.org",
@@ -304,7 +308,7 @@ function WhatWeCreate() {
               transition={{ duration: 0.7, delay: (i % 3) * 0.08 }}
             >
               <Link
-                to="/portfolio/$category"
+                to="/services/$category"
                 params={{ category: categoryToSlug(c.category) }}
                 className="group relative rounded-3xl overflow-hidden aspect-[4/5] sm:aspect-[4/5] lg:aspect-square block shadow-soft hover:shadow-luxe transition-shadow"
               >

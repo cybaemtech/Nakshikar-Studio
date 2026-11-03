@@ -39,7 +39,7 @@ export const AboutSection = () => {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="absolute z-30 w-56 sm:w-72 h-64 sm:h-80 rounded-2xl overflow-hidden shadow-luxe -right-4 sm:-right-8 bottom-10 border-2 border-white/80"
             >
-              <img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?q=80&w=2071&auto=format&fit=crop" alt="Paint Brushes" loading="lazy" decoding="async" className="w-full h-full object-cover" />
+              <img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?q=80&w=800&auto=format&fit=crop" alt="Paint Brushes" loading="lazy" decoding="async" className="w-full h-full object-cover" />
             </motion.div>
           </div>
 

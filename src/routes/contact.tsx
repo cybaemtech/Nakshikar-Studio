@@ -35,8 +35,20 @@ export const Route = createFileRoute("/contact")({
         content:
           "Planning a mural, painting, wall art or custom design project? Contact Nakshikars Studio to discuss your residential, commercial or hospitality space in Pune, PCMC & Mumbai.",
       },
-      { property: "og:image", content: "https://nakshikarsstudio.com/logo.png" },
+      { property: "og:image", content: "https://nakshikarsstudio.com/og-image.jpg" },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      { property: "og:image:type", content: "image/jpeg" },
       { property: "og:url", content: "https://nakshikarsstudio.com/contact" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Get custom artworks and murals created | Nakshikar's Studio" },
+      {
+        name: "twitter:description",
+        content:
+          "Planning a mural, painting, wall art or custom design project? Contact Nakshikars Studio to discuss your residential, commercial or hospitality space in Pune, PCMC & Mumbai.",
+      },
+      { name: "twitter:image", content: "https://nakshikarsstudio.com/og-image.jpg" },
+      { name: "twitter:image:alt", content: "Contact Nakshikar's Studio" },
       {
         "script:ld+json": {
           "@context": "https://schema.org",
@@ -348,7 +360,8 @@ function Contact() {
             <img
               src={contactImg}
               alt="Nakshikar's Studio Craftsmanship"
-              loading="lazy"
+              loading="eager"
+              fetchPriority="high"
               decoding="async"
               className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1200ms] group-hover:scale-105"
             />
@@ -549,19 +562,25 @@ function Contact() {
           {/* Contact Info in 3 Cards */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6">
             {/* Card 1: Office Address */}
-            <div className="bg-white rounded-2xl p-6 sm:p-7 border border-gray-100 shadow-soft hover:shadow-md transition-all flex flex-col gap-4">
-              <div className="h-11 w-11 rounded-full bg-[#fdf3e2] text-[#d49938] flex items-center justify-center shrink-0 shadow-sm">
+            <a
+              href="https://share.google/vBWtpMDSQXW98HlaB"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white rounded-2xl p-6 sm:p-7 border border-gray-100 shadow-soft hover:shadow-md transition-all flex flex-col gap-4 group hover:border-[color:var(--gold)]/40 cursor-pointer"
+            >
+              <div className="h-11 w-11 rounded-full bg-[#fdf3e2] text-[#d49938] flex items-center justify-center shrink-0 shadow-sm group-hover:scale-110 transition-transform">
                 <LocationPinIcon className="h-5 w-5" />
               </div>
               <div>
-                <div className="text-[11px] font-bold uppercase tracking-[0.18em] text-[color:var(--charcoal)] mb-1.5">
-                  Office Address
+                <div className="text-[11px] font-bold uppercase tracking-[0.18em] text-[color:var(--charcoal)] mb-1.5 flex items-center justify-between">
+                  <span>Office Address</span>
+                  <ArrowUpRight className="h-3.5 w-3.5 text-[color:var(--gold)] opacity-70 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
                 </div>
-                <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
+                <p className="text-xs sm:text-sm text-gray-600 leading-relaxed group-hover:text-gray-900 transition-colors">
                   Akurdi, Pimpri-Chinchwad, Maharashtra, Pune-411035, India
                 </p>
               </div>
-            </div>
+            </a>
 
             {/* Card 2: Call Us */}
             <a
@@ -623,14 +642,14 @@ function Contact() {
             </div>
 
             <div className="flex justify-start">
-              {/* <a
-                href="https://maps.google.com/?q=Office.+No+A+22,+World+Of+Mother,+behind+JAI+GANESH+VISION,+near+Aagan+hotel,+Shubhashri+Residency,+Ganga+Nagar,+Akurdi,+Pimpri-Chinchwad,+Maharashtra+411035"
+              <a
+                href="https://share.google/vBWtpMDSQXW98HlaB"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-xl bg-[#e5aa42] hover:bg-[#d89d38] text-[color:var(--charcoal)] px-5 py-3 text-xs font-bold uppercase tracking-[0.14em] shadow-sm hover:shadow transition-all"
               >
-                <ExternalLink className="h-4 w-4" /> Open in Google Maps ↗
-              </a> */}
+                <ExternalLink className="h-4 w-4" /> Open Google Profile / Maps ↗
+              </a>
             </div>
           </div>
         </div>

@@ -20,14 +20,22 @@ import { SectionEyebrow } from "@/components/SectionEyebrow";
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "Nakshikar's Studio - Where Art is Born" },
-      { name: "description", content: "We are a Pune-Pimpri Chinchwad based artists, designers and craftspeople since 2011 crafting murals, sculptures & wall art. Discover our story, vision and creative process." },
+      { title: "About Nakshikar's Studio" },
+      { name: "description", content: "We are a Pune, Pimpri Chinchwad based artists, designers and craftspeople since 2011 crafting murals, sculptures & wall art. Discover our story, vision and creative process." },
       { property: "og:site_name", content: "Nakshikar's Studio" },
       { property: "og:type", content: "website" },
-      { property: "og:title", content: "Nakshikar's Studio - Where Art is Born" },
-      { property: "og:description", content: "We are a Pune-Pimpri Chinchwad based artists, designers and craftspeople since 2011 crafting murals, sculptures & wall art. Discover our story, vision and creative process." },
-      { property: "og:image", content: "https://nakshikarsstudio.com/logo.png" },
+      { property: "og:title", content: "About Nakshikar's Studio" },
+      { property: "og:description", content: "We are a Pune, Pimpri Chinchwad based artists, designers and craftspeople since 2011 crafting murals, sculptures & wall art. Discover our story, vision and creative process." },
+      { property: "og:image", content: "https://nakshikarsstudio.com/og-image.jpg" },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      { property: "og:image:type", content: "image/jpeg" },
       { property: "og:url", content: "https://nakshikarsstudio.com/about" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "About Nakshikar's Studio" },
+      { name: "twitter:description", content: "We are a Pune, Pimpri Chinchwad based artists, designers and craftspeople since 2011 crafting murals, sculptures & wall art. Discover our story, vision and creative process." },
+      { name: "twitter:image", content: "https://nakshikarsstudio.com/og-image.jpg" },
+      { name: "twitter:image:alt", content: "About Nakshikar's Studio" },
       {
         "script:ld+json": {
           "@context": "https://schema.org",
@@ -36,8 +44,8 @@ export const Route = createFileRoute("/about")({
               "@type": "AboutPage",
               "@id": "https://nakshikarsstudio.com/about#webpage",
               "url": "https://nakshikarsstudio.com/about",
-              "name": "Nakshikar's Studio - Where Art is Born",
-              "description": "We are a Pune-Pimpri Chinchwad based artists, designers and craftspeople since 2011 crafting murals, sculptures & wall art. Discover our story, vision and creative process.",
+              "name": "About Nakshikar's Studio",
+              "description": "We are a Pune, Pimpri Chinchwad based artists, designers and craftspeople since 2011 crafting murals, sculptures & wall art. Discover our story, vision and creative process.",
               "isPartOf": {
                 "@id": "https://nakshikarsstudio.com/#website"
               },

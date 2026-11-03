@@ -40,12 +40,16 @@ export const Route = createFileRoute("/services_/$category")({
         { property: "og:type", content: "website" },
         { property: "og:title", content: service.seoTitle },
         { property: "og:description", content: service.metaDescription },
-        { property: "og:image", content: "https://nakshikarsstudio.com/logo.png" },
+        { property: "og:image", content: "https://nakshikarsstudio.com/og-image.jpg" },
+        { property: "og:image:width", content: "1200" },
+        { property: "og:image:height", content: "630" },
+        { property: "og:image:type", content: "image/jpeg" },
         { property: "og:url", content: canonicalUrl },
         { name: "twitter:card", content: "summary_large_image" },
         { name: "twitter:title", content: service.seoTitle },
         { name: "twitter:description", content: service.metaDescription },
-        { name: "twitter:image", content: "https://nakshikarsstudio.com/logo.png" },
+        { name: "twitter:image", content: "https://nakshikarsstudio.com/og-image.jpg" },
+        { name: "twitter:image:alt", content: service.seoTitle },
         {
           "script:ld+json": {
             "@context": "https://schema.org",

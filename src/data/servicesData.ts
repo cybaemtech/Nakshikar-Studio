@@ -105,8 +105,8 @@ export const SERVICES_DETAIL_MAP: Record<Category, ServiceDetail> = {
       { step: "04", title: "Artisan Application", description: "Hand-troweling and multi-layer sealing with durable protective topcoats." },
     ],
     highlights: ["Durable, washable architectural finishes", "Physical custom sample boards created before execution", "Seamless collaboration with architects and contractors"],
-    seoTitle: "Architectural Wall Design & Texture Services in Pune | Nakshikar's Studio",
-    metaDescription: "Artistic wall designs, Venetian plaster, 3D textured feature walls, and architectural accent treatments in Pune & Mumbai by Nakshikar's Studio.",
+    seoTitle: "Nakshikar's Wall Design and 3D Feature Walls",
+    metaDescription: "Transform plain walls with custom 3D feature walls, textured finishes and artistic wall designs created for homes, offices and commercial spaces.",
   },
 
   "Paintings": {
@@ -145,8 +145,8 @@ export const SERVICES_DETAIL_MAP: Record<Category, ServiceDetail> = {
       { step: "04", title: "Varnishing & Delivery", description: "Applying UV-protective varnish coats and coordinating white-glove delivery." },
     ],
     highlights: ["100% hand-painted by master artists", "Archival pigments that resist fading for 50+ years", "Custom bespoke dimensions proportioned to your walls"],
-    seoTitle: "Custom Canvas Painting & Fine Art Services in Pune | Nakshikar's Studio",
-    metaDescription: "Commission original handcrafted paintings, abstract canvas art, spiritual portraits, and fine art in Pune & Mumbai with Nakshikar's Studio.",
+    seoTitle: "Nakshikar's Paintings and Canvas Art Commissions",
+    metaDescription: "Commission handcrafted paintings and custom canvas art, from modern abstracts to elegant statement pieces designed to complement your space.",
   },
 
   "Murals": {
@@ -185,8 +185,8 @@ export const SERVICES_DETAIL_MAP: Record<Category, ServiceDetail> = {
       { step: "04", title: "Live Execution & Sealing", description: "Painting with master artists, followed by weatherproof protective sealing." },
     ],
     highlights: ["Proven execution on multi-story exterior facades", "Weather-resistant, UV-stable pigments", "Complete onsite scaffolding and safety management"],
-    seoTitle: "Wall Mural & Architectural Art Installation Services in Pune | Nakshikar's Studio",
-    metaDescription: "Commission custom hand-painted wall murals, 3D relief sculptures, and large-scale architectural art installations across Pune & Mumbai.",
+    seoTitle: "Nakshikar's Wall Murals and Mural Art",
+    metaDescription: "Transform interiors and exteriors with custom wall murals, 3D mural art and architectural installations crafted for homes, hotels and commercial spaces.",
   },
 
   "Nameplates": {
@@ -225,8 +225,8 @@ export const SERVICES_DETAIL_MAP: Record<Category, ServiceDetail> = {
       { step: "04", title: "Installation Support", description: "Providing hidden mounting hardware and full installation guidance." },
     ],
     highlights: ["Rust-proof, weather-resistant exterior finishes", "Integrated energy-efficient LED systems", "Custom Devanagari and English typographic styling"],
-    seoTitle: "Designer Nameplates & Entrance Signage in Pune | Nakshikar's Studio",
-    metaDescription: "Custom designer nameplates, brass plaques, wooden & stone plates, and LED backlit entrance signage handcrafted in Pune by Nakshikar's Studio.",
+    seoTitle: "Nakshikar's Luxury Custom Nameplates & Entrance Signs",
+    metaDescription: "Elevate your entrance with custom nameplates in brass, acrylic, teakwood and illuminated finishes, handcrafted to suit your style and space.",
   },
 
   "Interior Support": {
@@ -265,7 +265,7 @@ export const SERVICES_DETAIL_MAP: Record<Category, ServiceDetail> = {
       { step: "04", title: "Turnkey Installation", description: "Coordinated onsite installation timed seamlessly with project handover." },
     ],
     highlights: ["Dedicated single point of contact for architects", "Custom material sampling and prototyping", "Turnkey logistics and professional onsite installation"],
-    seoTitle: "Interior Art Consulting & Styling Services in Pune | Nakshikar's Studio",
-    metaDescription: "Turnkey art consulting, custom sculptures, spatial styling, and architectural art installation partnerships for interior designers in Pune.",
+    seoTitle: "Nakshikar's Interior Art Consulting and Styling",
+    metaDescription: "Expert art consulting, decor curation, spatial styling and installation support for architects, interior designers and premium interior projects.",
   },
 };

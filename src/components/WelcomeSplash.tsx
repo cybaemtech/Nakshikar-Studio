@@ -3,16 +3,25 @@ import { motion, AnimatePresence } from "framer-motion";
 import logo from "@/assets/logo.png";
 
 export function WelcomeSplash() {
-  const [showSplash, setShowSplash] = useState(true);
+  const [showSplash, setShowSplash] = useState(() => {
+    if (typeof window === "undefined") return false;
+    const isHome = window.location.pathname === "/" || window.location.pathname === "";
+    const hasSeen = sessionStorage.getItem("nakshikar_splash_seen");
+    return isHome && !hasSeen;
+  });
 
   useEffect(() => {
+    if (!showSplash) return;
+    try {
+      sessionStorage.setItem("nakshikar_splash_seen", "true");
+    } catch { }
     // Timer to finish animation and unveil website
     const timer = setTimeout(() => {
       setShowSplash(false);
     }, 2800);
 
     return () => clearTimeout(timer);
-  }, []);
+  }, [showSplash]);
 
   const welcomeWords = ["Welcome", "to"];
 
@@ -29,7 +38,7 @@ export function WelcomeSplash() {
           {/* Ambient decorative lighting blobs */}
           <div className="absolute -top-32 -left-32 h-[450px] w-[450px] rounded-full bg-gold-gradient opacity-20 blur-3xl" />
           <div className="absolute -bottom-32 -right-32 h-[450px] w-[450px] rounded-full bg-royal-gradient opacity-25 blur-3xl" />
-          
+
           <div className="relative z-10 flex flex-col items-center text-center px-6 max-w-4xl">
             {/* Line 1: "Welcome to" Word by Word */}
             <div className="flex flex-wrap justify-center gap-3 mb-3 text-xs sm:text-sm tracking-[0.35em] uppercase font-semibold text-[color:var(--gold-deep)]">
@@ -62,10 +71,10 @@ export function WelcomeSplash() {
               }}
               className="my-8 flex justify-center items-center w-full"
             >
-              <img 
-                src={logo} 
-                alt="Nakshikar's Studio" 
-                className="h-24 xs:h-32 sm:h-40 md:h-52 lg:h-64 w-auto object-contain filter drop-shadow-[0_8px_24px_rgba(0,0,0,0.12)]" 
+              <img
+                src={logo}
+                alt="Nakshikar's Studio"
+                className="h-24 xs:h-32 sm:h-40 md:h-52 lg:h-64 w-auto object-contain filter drop-shadow-[0_8px_24px_rgba(0,0,0,0.12)]"
               />
             </motion.div>
 

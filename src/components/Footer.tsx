@@ -108,13 +108,15 @@ export function Footer() {
       <div className="relative mx-auto max-w-7xl px-5 sm:px-8 py-20">
         <div className="grid lg:grid-cols-12 gap-12">
           <div className="lg:col-span-5 space-y-6">
-            <img src={logo} alt="Nakshikar's Studio" className="h-12 w-auto bg-white rounded-xl p-2" />
+            <Link to="/" aria-label="Nakshikar's Studio Home" className="inline-block transition-transform hover:opacity-90">
+              <img src={logo} alt="Nakshikar's Studio" className="h-12 w-auto bg-white rounded-xl p-2" />
+            </Link>
             <p className="text-white/70 leading-relaxed max-w-md">
               A premium art & design studio crafting heirloom paintings, murals, sculptures, signages, branding and digital experiences.
             </p>
 
             <a
-              href="https://maps.google.com/?q=Office+No+A+22+World+Of+Mother+behind+JAI+GANESH+VISION+near+Aagan+hotel+Shubhashri+Residency+Ganga+Nagar+Akurdi+Pimpri-Chinchwad+Maharashtra+411035"
+              href="https://share.google/vBWtpMDSQXW98HlaB"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="View studio address on Google Maps"
