@@ -18,19 +18,12 @@ export const Route = createFileRoute("/work")({
   beforeLoad: ({ search }) => {
     if (search.category) {
       const matched = slugToCategory(search.category);
-      const slug = matched
-        ? categoryToSlug(matched)
-        : search.category.toLowerCase().replace(/\s+/g, "-");
-      const pageNum = Number(search.page);
-
-      throw redirect({
-        to: "/portfolio/$category",
-        params: { category: slug },
-        search: pageNum > 1 ? { page: pageNum } : {},
-        replace: true,
-      } as any);
+      if (typeof window !== "undefined" && matched) {
+        try {
+          sessionStorage.setItem("portfolio_active_category", matched);
+        } catch (e) {}
+      }
     }
-
     const pageNum = Number(search.page);
     throw redirect({
       to: "/portfolio",

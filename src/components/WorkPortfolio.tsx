@@ -139,34 +139,25 @@ export function WorkPortfolio({
     setActiveCategory(newCat);
     setCurrentPage(1);
 
-    const slug = categoryToSlug(newCat);
-    (navigate as any)({
-      to: "/portfolio/$category",
-      params: { category: slug },
-      search: {},
-      replace: false,
-    });
+    // Keep URL strictly as /portfolio
+    if (typeof window !== "undefined" && window.location.pathname !== "/portfolio") {
+      (navigate as any)({
+        to: "/portfolio",
+        search: {},
+        replace: true,
+      });
+    }
   };
 
   const handlePageChange = (newPage: number) => {
     if (newPage < 1 || newPage > totalPages) return;
     setCurrentPage(newPage);
 
-    const slug = categoryToSlug(activeCategory);
-    if (isCategoryRoute) {
-      (navigate as any)({
-        to: "/portfolio/$category",
-        params: { category: slug },
-        search: newPage > 1 ? { page: newPage } : {},
-        replace: true,
-      });
-    } else {
-      (navigate as any)({
-        to: "/portfolio",
-        search: newPage > 1 ? { page: newPage } : {},
-        replace: true,
-      });
-    }
+    (navigate as any)({
+      to: "/portfolio",
+      search: newPage > 1 ? { page: newPage } : {},
+      replace: true,
+    });
 
     if (galleryRef.current) {
       galleryRef.current.scrollIntoView({ behavior: "smooth", block: "start" });

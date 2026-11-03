@@ -127,8 +127,12 @@ function ServiceDetailPage() {
             {/* Action Buttons */}
             <div className="flex flex-wrap items-center gap-4 pt-1">
               <Link
-                to="/portfolio/$category"
-                params={{ category: portfolioSlug }}
+                to="/portfolio"
+                onClick={() => {
+                  try {
+                    sessionStorage.setItem("portfolio_active_category", matched);
+                  } catch (e) {}
+                }}
                 className="inline-flex items-center gap-2 rounded-full bg-royal-gradient text-white px-7 py-3 text-xs tracking-[0.18em] uppercase font-semibold shadow-luxe hover:scale-[1.03] transition-transform"
               >
                 <Layers className="h-4 w-4" /> View {matched} Portfolio
@@ -262,8 +266,12 @@ function ServiceDetailPage() {
           </div>
           <div className="flex flex-wrap items-center gap-4 shrink-0">
             <Link
-              to="/portfolio/$category"
-              params={{ category: portfolioSlug }}
+              to="/portfolio"
+              onClick={() => {
+                try {
+                  sessionStorage.setItem("portfolio_active_category", matched);
+                } catch (e) {}
+              }}
               className="inline-flex items-center gap-2 rounded-full bg-white text-[color:var(--royal-deep)] px-7 py-3.5 text-xs tracking-[0.18em] uppercase font-bold shadow-luxe hover:bg-[#faf8f5] transition-colors"
             >
               Explore {matched} Gallery <ArrowUpRight className="h-4 w-4" />

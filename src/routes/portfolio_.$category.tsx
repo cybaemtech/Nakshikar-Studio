@@ -14,25 +14,20 @@ export const Route = createFileRoute("/portfolio_/$category")({
       page: pageParam > 1 ? pageParam : undefined,
     };
   },
-  beforeLoad: ({ params }) => {
+  beforeLoad: ({ params, search }) => {
     const { category } = params;
-    if (!isValidCategorySlug(category)) {
-      const resolved = slugToCategory(category);
-      if (resolved) {
-        const slug = categoryToSlug(resolved);
-        throw redirect({
-          to: "/portfolio/$category",
-          params: { category: slug },
-          replace: true,
-        } as any);
-      }
-      // If completely invalid slug, fallback to graphics
-      throw redirect({
-        to: "/portfolio/$category",
-        params: { category: "graphics" },
-        replace: true,
-      } as any);
+    const resolved = slugToCategory(category);
+    if (typeof window !== "undefined" && resolved) {
+      try {
+        sessionStorage.setItem("portfolio_active_category", resolved);
+      } catch (e) {}
     }
+    const pageNum = Number(search.page);
+    throw redirect({
+      to: "/portfolio",
+      search: pageNum > 1 ? { page: pageNum } : {},
+      replace: true,
+    } as any);
   },
   head: ({ params }) => {
     const matched = slugToCategory(params.category);

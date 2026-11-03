@@ -15,12 +15,14 @@ export const Route = createFileRoute("/work_/$category")({
   beforeLoad: ({ params, search }) => {
     const { category } = params;
     const resolved = slugToCategory(category);
-    const slug = resolved ? categoryToSlug(resolved) : category.toLowerCase();
+    if (typeof window !== "undefined" && resolved) {
+      try {
+        sessionStorage.setItem("portfolio_active_category", resolved);
+      } catch (e) {}
+    }
     const pageNum = Number(search.page);
-
     throw redirect({
-      to: "/portfolio/$category",
-      params: { category: slug },
+      to: "/portfolio",
       search: pageNum > 1 ? { page: pageNum } : {},
       replace: true,
     } as any);

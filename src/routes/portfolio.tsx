@@ -17,22 +17,7 @@ export const Route = createFileRoute("/portfolio")({
       page: pageParam > 0 ? pageParam : undefined,
     };
   },
-  beforeLoad: ({ search }) => {
-    if (search.category) {
-      const matched = slugToCategory(search.category);
-      const slug = matched
-        ? categoryToSlug(matched)
-        : search.category.toLowerCase().replace(/\s+/g, "-");
-      const pageNum = Number(search.page);
 
-      throw redirect({
-        to: "/portfolio/$category",
-        params: { category: slug },
-        search: pageNum > 1 ? { page: pageNum } : {},
-        replace: true,
-      } as any);
-    }
-  },
   head: () => ({
     meta: [
       { title: PORTFOLIO_OVERVIEW_SEO.title },
@@ -96,10 +81,24 @@ export const Route = createFileRoute("/portfolio")({
 });
 
 function PortfolioRouteComponent() {
-  const { page } = Route.useSearch();
+  const { category: searchCat, page } = Route.useSearch();
+  let initialCat = "Graphics";
+  if (searchCat) {
+    const matched = slugToCategory(searchCat);
+    if (matched) initialCat = matched;
+  } else if (typeof window !== "undefined") {
+    try {
+      const saved = sessionStorage.getItem("portfolio_active_category");
+      if (saved) {
+        sessionStorage.removeItem("portfolio_active_category");
+        initialCat = saved;
+      }
+    } catch (e) {}
+  }
+
   return (
     <WorkPortfolio
-      initialCategory="Graphics"
+      initialCategory={initialCat as any}
       initialPage={page || 1}
       isCategoryRoute={false}
     />
