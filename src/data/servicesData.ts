@@ -32,7 +32,7 @@ export const SERVICES_DETAIL_MAP: Record<Category, ServiceDetail> = {
   "Graphics": {
     category: "Graphics",
     slug: "graphics",
-    heroTitle: "Bespoke Graphic Design & Brand Identity Systems",
+    heroTitle: "Designs That Help People Remember Your Brand",
     heroSubtitle: "Design studio crafting memorable logos, lettering, and packaging that define your brand identity.",
     description: "At Nakshikar's Studio, graphic design is an art of intentional storytelling. We collaborate with ambitious startups, luxury developers, hospitality groups, and cultural entities to craft distinctive brand identities, bespoke typography, luxury packaging, and high-impact marketing collateral.",
     image: graphicsImg,
@@ -65,8 +65,8 @@ export const SERVICES_DETAIL_MAP: Record<Category, ServiceDetail> = {
       { step: "04", title: "Asset Delivery", description: "Turnkey delivery of master vector files, brand guidelines, and print-ready deliverables." },
     ],
     highlights: ["Over 15 years crafting corporate identities", "Custom Marathi & Devanagari calligraphy specialists", "Full spectrum from digital screens to print finishing"],
-    seoTitle: "Graphic Design & Brand Identity Services in Pune | Nakshikar's Studio",
-    metaDescription: "Professional graphic design, corporate branding, custom typography, luxury packaging, and print media services in Pune by Nakshikar's Studio.",
+    seoTitle: "Nakshikar's Graphic Design & Brand Identity Services",
+    metaDescription: "Build a distinctive brand with custom logo design, packaging, lettering and visual identity solutions crafted for businesses and brands in Pune, PCMC and Mumbai.",
   },
 
   "Wall Design": {

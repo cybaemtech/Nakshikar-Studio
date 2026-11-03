@@ -35,6 +35,10 @@ export const Route = createFileRoute("/")({
       { property: "og:description", content: "We create custom paintings, wall murals, sculptures, signage and interior art for homes, hotels, offices and brands across Pune, Pimpri Chinchwad and Mumbai" },
       { property: "og:image", content: "https://nakshikarsstudio.com/logo.png" },
       { property: "og:url", content: "https://nakshikarsstudio.com/" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Custom Art & Painting Studio in Pune | Nakshikars Studio" },
+      { name: "twitter:description", content: "We create custom paintings, wall murals, sculptures, signage and interior art for homes, hotels, offices and brands across Pune, Pimpri Chinchwad and Mumbai" },
+      { name: "twitter:image", content: "https://nakshikarsstudio.com/logo.png" },
       {
         "script:ld+json": {
           "@context": "https://schema.org",
@@ -194,7 +198,8 @@ function Hero() {
             <motion.img
               src={heroMural}
               alt="Bolava vitthal wall mural"
-              loading="lazy"
+              loading="eager"
+              fetchPriority="high"
               decoding="async"
               className="h-full w-full object-cover"
               initial={{ scale: 1.15 }}

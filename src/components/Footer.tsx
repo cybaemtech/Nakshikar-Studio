@@ -153,6 +153,7 @@ export function Footer() {
               {NAV.map((n) => (
                 <li key={n.href}><Link to={n.href} className="hover:text-[color:var(--gold-light)] transition-colors">{n.label}</Link></li>
               ))}
+              <li><Link to="/privacy-policy" className="hover:text-[color:var(--gold-light)] transition-colors">Privacy Policy</Link></li>
             </ul>
           </div>
 
@@ -176,6 +177,10 @@ export function Footer() {
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/50">
           <div>
             © {new Date().getFullYear()} Nakshikar's Studio. All rights reserved.{" "}
+            <span className="mx-1">|</span>{" "}
+            <Link to="/privacy-policy" className="hover:text-[color:var(--gold-light)] transition-colors">
+              Privacy Policy
+            </Link>{" "}
             <span className="mx-1">|</span>{" "}
             <a
               href="https://www.cybaemtech.com/"

@@ -42,6 +42,10 @@ export const Route = createFileRoute("/services_/$category")({
         { property: "og:description", content: service.metaDescription },
         { property: "og:image", content: "https://nakshikarsstudio.com/logo.png" },
         { property: "og:url", content: canonicalUrl },
+        { name: "twitter:card", content: "summary_large_image" },
+        { name: "twitter:title", content: service.seoTitle },
+        { name: "twitter:description", content: service.metaDescription },
+        { name: "twitter:image", content: "https://nakshikarsstudio.com/logo.png" },
         {
           "script:ld+json": {
             "@context": "https://schema.org",
@@ -85,7 +89,10 @@ export const Route = createFileRoute("/services_/$category")({
           },
         },
       ],
-      links: [{ rel: "canonical", href: canonicalUrl }],
+      links: [
+        { rel: "canonical", href: canonicalUrl },
+        { rel: "preload", as: "image", href: service.image },
+      ],
     };
   },
   component: ServiceDetailPage,

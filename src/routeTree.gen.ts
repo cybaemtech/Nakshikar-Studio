@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as WorkRouteImport } from './routes/work'
 import { Route as ServicesRouteImport } from './routes/services'
+import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
 import { Route as PortfolioRouteImport } from './routes/portfolio'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as ArtStudioInPuneRouteImport } from './routes/art-studio-in-pune'
@@ -28,6 +29,11 @@ const WorkRoute = WorkRouteImport.update({
 const ServicesRoute = ServicesRouteImport.update({
   id: '/services',
   path: '/services',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyPolicyRoute = PrivacyPolicyRouteImport.update({
+  id: '/privacy-policy',
+  path: '/privacy-policy',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PortfolioRoute = PortfolioRouteImport.update({
@@ -77,6 +83,7 @@ export interface FileRoutesByFullPath {
   '/art-studio-in-pune': typeof ArtStudioInPuneRoute
   '/contact': typeof ContactRoute
   '/portfolio': typeof PortfolioRoute
+  '/privacy-policy': typeof PrivacyPolicyRoute
   '/services': typeof ServicesRoute
   '/work': typeof WorkRoute
   '/portfolio/$category': typeof PortfolioCategoryRoute
@@ -89,6 +96,7 @@ export interface FileRoutesByTo {
   '/art-studio-in-pune': typeof ArtStudioInPuneRoute
   '/contact': typeof ContactRoute
   '/portfolio': typeof PortfolioRoute
+  '/privacy-policy': typeof PrivacyPolicyRoute
   '/services': typeof ServicesRoute
   '/work': typeof WorkRoute
   '/portfolio/$category': typeof PortfolioCategoryRoute
@@ -102,6 +110,7 @@ export interface FileRoutesById {
   '/art-studio-in-pune': typeof ArtStudioInPuneRoute
   '/contact': typeof ContactRoute
   '/portfolio': typeof PortfolioRoute
+  '/privacy-policy': typeof PrivacyPolicyRoute
   '/services': typeof ServicesRoute
   '/work': typeof WorkRoute
   '/portfolio_/$category': typeof PortfolioCategoryRoute
@@ -116,6 +125,7 @@ export interface FileRouteTypes {
     | '/art-studio-in-pune'
     | '/contact'
     | '/portfolio'
+    | '/privacy-policy'
     | '/services'
     | '/work'
     | '/portfolio/$category'
@@ -128,6 +138,7 @@ export interface FileRouteTypes {
     | '/art-studio-in-pune'
     | '/contact'
     | '/portfolio'
+    | '/privacy-policy'
     | '/services'
     | '/work'
     | '/portfolio/$category'
@@ -140,6 +151,7 @@ export interface FileRouteTypes {
     | '/art-studio-in-pune'
     | '/contact'
     | '/portfolio'
+    | '/privacy-policy'
     | '/services'
     | '/work'
     | '/portfolio_/$category'
@@ -153,6 +165,7 @@ export interface RootRouteChildren {
   ArtStudioInPuneRoute: typeof ArtStudioInPuneRoute
   ContactRoute: typeof ContactRoute
   PortfolioRoute: typeof PortfolioRoute
+  PrivacyPolicyRoute: typeof PrivacyPolicyRoute
   ServicesRoute: typeof ServicesRoute
   WorkRoute: typeof WorkRoute
   PortfolioCategoryRoute: typeof PortfolioCategoryRoute
@@ -174,6 +187,13 @@ declare module '@tanstack/react-router' {
       path: '/services'
       fullPath: '/services'
       preLoaderRoute: typeof ServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy-policy': {
+      id: '/privacy-policy'
+      path: '/privacy-policy'
+      fullPath: '/privacy-policy'
+      preLoaderRoute: typeof PrivacyPolicyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/portfolio': {
@@ -241,6 +261,7 @@ const rootRouteChildren: RootRouteChildren = {
   ArtStudioInPuneRoute: ArtStudioInPuneRoute,
   ContactRoute: ContactRoute,
   PortfolioRoute: PortfolioRoute,
+  PrivacyPolicyRoute: PrivacyPolicyRoute,
   ServicesRoute: ServicesRoute,
   WorkRoute: WorkRoute,
   PortfolioCategoryRoute: PortfolioCategoryRoute,
