@@ -13,7 +13,7 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import contactImg from "@/assets/painting.jpg";
+import contactImg from "@/assets/painting.webp";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -89,7 +89,10 @@ export const Route = createFileRoute("/contact")({
         },
       },
     ],
-    links: [{ rel: "canonical", href: "https://nakshikarsstudio.com/contact" }],
+    links: [
+      { rel: "canonical", href: "https://nakshikarsstudio.com/contact" },
+      { rel: "preload", as: "image", href: contactImg, fetchPriority: "high" },
+    ],
   }),
 }).update({
   component: Contact,

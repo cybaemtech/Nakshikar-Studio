@@ -109,6 +109,10 @@ export const Route = createFileRoute("/")({
     ],
     links: [
       { rel: "canonical", href: "https://nakshikarsstudio.com/" },
+      { rel: "preload", as: "image", href: heroMural, fetchPriority: "high" },
+      { rel: "preload", as: "image", href: heroMurti, fetchPriority: "high" },
+      { rel: "preload", as: "image", href: heroPainting, fetchPriority: "high" },
+      { rel: "preload", as: "image", href: heroNameplate, fetchPriority: "high" },
     ],
   }),
 }).update({
@@ -212,13 +216,13 @@ function Hero() {
             />
           </motion.div>
           <motion.div style={{ y: y2 }} className="absolute top-[18%] left-0 w-[54%] sm:w-[56%] h-[30%] sm:h-[34%] rounded-3xl overflow-hidden shadow-soft border-4 border-white animate-float">
-            <img src={heroMurti} alt="Decorative fish wall Design" loading="lazy" decoding="async" className="h-full w-full object-cover" />
+            <img src={heroMurti} alt="Decorative fish wall Design" loading="eager" fetchPriority="high" decoding="async" className="h-full w-full object-cover" />
           </motion.div>
           <motion.div style={{ y: y3 }} className="absolute bottom-0 left-[10%] w-[48%] h-[44%] rounded-3xl overflow-hidden shadow-luxe border-4 border-white">
-            <img src={heroPainting} alt="Autmn tree painting" loading="lazy" decoding="async" className="h-full w-full object-cover" />
+            <img src={heroPainting} alt="Autmn tree painting" loading="eager" fetchPriority="high" decoding="async" className="h-full w-full object-cover" />
           </motion.div>
           <motion.div style={{ y: y2 }} className="absolute bottom-[8%] right-0 w-[36%] h-[36%] rounded-3xl overflow-hidden shadow-soft border-4 border-white">
-            <img src={heroNameplate} alt="Custom artistic nameplate design" loading="lazy" decoding="async" className="h-full w-full object-cover" />
+            <img src={heroNameplate} alt="Custom artistic nameplate design" loading="eager" fetchPriority="high" decoding="async" className="h-full w-full object-cover" />
           </motion.div>
 
           {/* floating badge */}
