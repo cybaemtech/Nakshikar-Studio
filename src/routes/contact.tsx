@@ -371,12 +371,12 @@ function Contact() {
             <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent pointer-events-none" />
 
             <div className="absolute inset-x-0 bottom-0 p-8 sm:p-10 text-white z-10">
-              <h3 className="font-display text-3xl sm:text-4xl text-white tracking-tight">
+              <h2 className="font-display text-3xl sm:text-4xl text-white tracking-tight">
                 Nakshikar's{" "}
                 <span className="italic font-serif text-gradient-gold">
                   Studio
                 </span>
-              </h3>
+              </h2>
               <div className="w-16 h-[2px] bg-gradient-to-r from-[color:var(--gold)] to-[color:var(--gold-light)] mt-2" />
             </div>
           </div>

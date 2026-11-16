@@ -245,7 +245,7 @@ function ServiceDetailPage() {
                 <div className="text-[color:var(--gold)] font-mono text-2xl font-bold mb-3">
                   {step.step}
                 </div>
-                <h4 className="font-display text-xl text-white mb-2">{step.title}</h4>
+                <h3 className="font-display text-xl text-white mb-2">{step.title}</h3>
                 <p className="text-white/70 text-xs leading-relaxed">{step.description}</p>
               </div>
             ))}
@@ -257,9 +257,9 @@ function ServiceDetailPage() {
       <section className="py-16 bg-gold-gradient text-white">
         <div className="mx-auto max-w-7xl px-5 sm:px-8 flex flex-col md:flex-row items-center justify-between gap-8">
           <div>
-            <h3 className="font-display text-3xl sm:text-4xl text-white font-medium mb-2">
+            <h2 className="font-display text-3xl sm:text-4xl text-white font-medium mb-2">
               Ready to see our {matched} artwork?
-            </h3>
+            </h2>
             <p className="text-white/90 text-sm sm:text-base max-w-xl">
               Browse our curated portfolio of completed {matched.toLowerCase()} projects created for clients across Pune and Mumbai.
             </p>
