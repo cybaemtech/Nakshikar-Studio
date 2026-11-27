@@ -1,6 +1,6 @@
 import { Instagram, Facebook, Linkedin } from "lucide-react";
 import { Link } from "@tanstack/react-router";
-import logo from "@/assets/logo.png";
+import logo from "@/assets/nav-logo.webp";
 
 import painting from "@/assets/services/services/paintings.webp";
 import mural from "@/assets/services/services/hero-mural.webp";
@@ -109,7 +109,7 @@ export function Footer() {
         <div className="grid lg:grid-cols-12 gap-12">
           <div className="lg:col-span-5 space-y-6">
             <Link to="/" aria-label="Nakshikar's Studio Home" className="inline-block transition-transform hover:opacity-90">
-              <img src={logo} alt="Nakshikar's Studio" className="h-12 w-auto bg-white rounded-xl p-2" />
+              <img src={logo} alt="Nakshikar's Studio" width={180} height={59} loading="lazy" decoding="async" className="h-12 w-auto bg-white rounded-xl p-2" />
             </Link>
             <p className="text-white/70 leading-relaxed max-w-md">
               A premium art & design studio crafting heirloom paintings, murals, sculptures, signages, branding and digital experiences.

@@ -1,0 +1,21 @@
+{
+  "specVersion": "1.0",
+  "host": {
+    "displayName": "Nakshikar's Studio",
+    "identifier": "did:web:nakshikarsstudio.com"
+  },
+  "entries": [
+    {
+      "identifier": "urn:air:nakshikarsstudio.com:llms-txt",
+      "displayName": "Nakshikar's Studio Site Guide (llms.txt)",
+      "type": "text/markdown",
+      "url": "https://nakshikarsstudio.com/llms.txt",
+      "representativeQueries": [
+        "Nakshikar's Studio custom paintings murals and wall art in Pune",
+        "Custom nameplates, 3D feature walls, and interior art services",
+        "Contact Nakshikar's Studio for an art or mural commission"
+      ]
+    }
+  ]
+}
+

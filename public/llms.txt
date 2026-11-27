@@ -1,0 +1,19 @@
+# Nakshikar's Studio
+
+> Nakshikar's Studio is a custom art and design atelier in Pune, Pimpri Chinchwad, and Mumbai creating handcrafted paintings, wall murals, 3D feature walls, sculptures, luxury nameplates, brand identity, and interior art styling.
+
+## Pages
+- [Home](https://nakshikarsstudio.com/): Overview of Nakshikar's Studio, creative disciplines, process, and client stories.
+- [About Us](https://nakshikarsstudio.com/about): Studio background since 2011, artistry philosophy, and leadership.
+- [Services](https://nakshikarsstudio.com/services): Complete overview of custom art, mural, painting, signage, and interior consulting services.
+- [Portfolio](https://nakshikarsstudio.com/portfolio): Gallery of completed paintings, murals, wall designs, nameplates, and branding projects.
+- [Contact](https://nakshikarsstudio.com/contact): Commission inquiries and studio contact details in Pune, Maharashtra.
+
+## Services
+- [Graphics & Brand Identity](https://nakshikarsstudio.com/services/graphics): Logo design, packaging, lettering, and visual identity systems.
+- [Wall Design & 3D Feature Walls](https://nakshikarsstudio.com/services/wall-design): Textured architectural finishes and custom 3D feature walls.
+- [Paintings & Canvas Art](https://nakshikarsstudio.com/services/paintings): Handcrafted bespoke canvas paintings, portraits, and abstract commissions.
+- [Wall Murals & Mural Art](https://nakshikarsstudio.com/services/murals): Hand-painted residential, hospitality, and commercial murals.
+- [Custom Nameplates & Signs](https://nakshikarsstudio.com/services/nameplates): Luxury handcrafted nameplates in brass, wood, acrylic, and illuminated finishes.
+- [Interior Art Support](https://nakshikarsstudio.com/services/interior-support): Spatial art curation, styling, and on-site installation support for architects and designers.
+

@@ -141,6 +141,47 @@
   );
 }
 
+@utility hero-blob-gold {
+  background-image: radial-gradient(
+    circle,
+    oklch(0.88 0.13 88 / 0.35) 0%,
+    oklch(0.7 0.14 70 / 0.14) 45%,
+    transparent 72%
+  );
+}
+
+@utility hero-blob-royal {
+  background-image: radial-gradient(
+    circle,
+    color-mix(in oklab, var(--royal) 28%, transparent) 0%,
+    color-mix(in oklab, var(--royal-deep) 12%, transparent) 45%,
+    transparent 72%
+  );
+}
+
+@media (min-width: 1024px) {
+  .hero-blob-gold {
+    background-image: linear-gradient(
+      135deg,
+      oklch(0.7 0.14 70),
+      oklch(0.88 0.13 88),
+      oklch(0.62 0.16 60)
+    );
+    opacity: 0.3;
+    filter: blur(64px);
+  }
+  .hero-blob-royal {
+    background-image: linear-gradient(
+      135deg,
+      var(--royal-deep),
+      var(--royal),
+      oklch(0.38 0.18 270)
+    );
+    opacity: 0.25;
+    filter: blur(64px);
+  }
+}
+
 @utility bg-mesh {
   background-image:
     radial-gradient(at 12% 18%, color-mix(in oklab, var(--gold) 26%, transparent) 0px, transparent 45%),

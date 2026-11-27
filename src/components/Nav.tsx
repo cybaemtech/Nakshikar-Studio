@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 import { Link } from "@tanstack/react-router";
-import logo from "@/assets/logo.png";
+import logo from "@/assets/nav-logo.webp";
 
 export const NAV = [
   { label: "Home", href: "/" },
@@ -17,9 +17,12 @@ export function Nav() {
   const [open, setOpen] = useState(false);
   useEffect(() => {
     const on = () => setScrolled(window.scrollY > 24);
-    on();
+    const raf = requestAnimationFrame(on);
     window.addEventListener("scroll", on, { passive: true });
-    return () => window.removeEventListener("scroll", on);
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener("scroll", on);
+    };
   }, []);
   return (
     <header
@@ -36,7 +39,7 @@ export function Nav() {
         style={scrolled ? { paddingTop: 10, paddingBottom: 10 } : {}}
       >
         <Link to="/" className="flex items-center gap-3">
-          <img src={logo} alt="Nakshikar's Studio" className="h-9 sm:h-11 w-auto" />
+          <img src={logo} alt="Nakshikar's Studio" width={180} height={59} decoding="async" className="h-9 sm:h-11 w-auto" />
         </Link>
         <nav className="hidden lg:flex items-center gap-9">
           {NAV.map((n) => (

@@ -94,7 +94,6 @@ export const Route = createFileRoute("/contact")({
       { rel: "preload", as: "image", href: contactImg, fetchPriority: "high" },
     ],
   }),
-}).update({
   component: Contact,
 });
 

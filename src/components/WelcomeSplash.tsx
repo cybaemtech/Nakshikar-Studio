@@ -1,10 +1,15 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import logo from "@/assets/logo.png";
+import logo from "@/assets/logo.webp";
+import logoSm from "@/assets/logo-sm.webp";
 
 export function WelcomeSplash() {
   const [showSplash, setShowSplash] = useState(() => {
     if (typeof window === "undefined") return false;
+    const win = window as unknown as { __SPLASH_HANDLED_BY_HTML__?: boolean };
+    if (win.__SPLASH_HANDLED_BY_HTML__) {
+      return false;
+    }
     const isHome = window.location.pathname === "/" || window.location.pathname === "";
     const hasSeen = sessionStorage.getItem("nakshikar_splash_seen");
     return isHome && !hasSeen;
@@ -14,11 +19,13 @@ export function WelcomeSplash() {
     if (!showSplash) return;
     try {
       sessionStorage.setItem("nakshikar_splash_seen", "true");
-    } catch { }
-    // Timer to finish animation and unveil website
+    } catch {
+      // Ignore storage access errors in restricted browsing modes
+    }
+    // Timer to finish animation and unveil website (~1.85s total with 0.45s exit)
     const timer = setTimeout(() => {
       setShowSplash(false);
-    }, 2800);
+    }, 1400);
 
     return () => clearTimeout(timer);
   }, [showSplash]);
@@ -32,7 +39,7 @@ export function WelcomeSplash() {
           key="welcome-splash"
           initial={{ opacity: 1 }}
           exit={{ y: "-100%", opacity: 0.9 }}
-          transition={{ duration: 0.85, ease: [0.76, 0, 0.24, 1] }}
+          transition={{ duration: 0.45, ease: [0.76, 0, 0.24, 1] }}
           className="fixed inset-0 z-[99999] flex flex-col items-center justify-center bg-[color:var(--cream)] text-[color:var(--charcoal)] overflow-hidden select-none"
         >
           {/* Ambient decorative lighting blobs */}
@@ -48,8 +55,8 @@ export function WelcomeSplash() {
                     initial={{ y: "100%", opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{
-                      duration: 0.6,
-                      delay: 0.3 + i * 0.2,
+                      duration: 0.35,
+                      delay: 0.05 + i * 0.1,
                       ease: [0.22, 1, 0.36, 1],
                     }}
                     className="inline-block"
@@ -62,17 +69,19 @@ export function WelcomeSplash() {
 
             {/* Logo replacing text */}
             <motion.div
-              initial={{ y: 30, opacity: 0 }}
+              initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{
-                duration: 0.8,
-                delay: 0.7,
+                duration: 0.45,
+                delay: 0.18,
                 ease: [0.22, 1, 0.36, 1],
               }}
               className="my-8 flex justify-center items-center w-full"
             >
               <img
-                src={logo}
+                src={logoSm}
+                srcSet={`${logoSm} 400w, ${logo} 640w`}
+                sizes="(max-width: 639px) 320px, 560px"
                 alt="Nakshikar's Studio"
                 className="h-24 xs:h-32 sm:h-40 md:h-52 lg:h-64 w-auto object-contain filter drop-shadow-[0_8px_24px_rgba(0,0,0,0.12)]"
               />
@@ -80,10 +89,10 @@ export function WelcomeSplash() {
 
             {/* Subline Tagline Devanagari Reveal */}
             <motion.p
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.5, duration: 0.7 }}
-              className="mt-6 font-devanagari text-lg sm:text-xl text-[color:var(--royal-deep)] tracking-wide opacity-90"
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 0.9, y: 0 }}
+              transition={{ delay: 0.4, duration: 0.4 }}
+              className="mt-6 font-devanagari text-lg sm:text-xl text-[color:var(--royal-deep)] tracking-wide"
             >
               जिथे नक्षी जन्मा येते.
             </motion.p>
@@ -93,7 +102,7 @@ export function WelcomeSplash() {
               <motion.div
                 initial={{ x: "-100%" }}
                 animate={{ x: "0%" }}
-                transition={{ duration: 2.4, ease: "easeInOut" }}
+                transition={{ duration: 1.15, delay: 0.1, ease: "easeInOut" }}
                 className="h-full bg-gold-gradient w-full"
               />
             </div>

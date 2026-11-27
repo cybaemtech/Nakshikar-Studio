@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { Sparkles, Plus, Minus, ArrowUpRight, ArrowRight, Lightbulb, PencilRuler, Monitor, Paintbrush, Settings, Landmark } from "lucide-react";
 
@@ -110,9 +110,6 @@ export const Route = createFileRoute("/")({
     links: [
       { rel: "canonical", href: "https://nakshikarsstudio.com/" },
       { rel: "preload", as: "image", href: heroMural, fetchPriority: "high" },
-      { rel: "preload", as: "image", href: heroMurti, fetchPriority: "high" },
-      { rel: "preload", as: "image", href: heroPainting, fetchPriority: "high" },
-      { rel: "preload", as: "image", href: heroNameplate, fetchPriority: "high" },
     ],
   }),
 }).update({
@@ -121,7 +118,7 @@ export const Route = createFileRoute("/")({
 
 /* ------------------------------ HERO ------------------------------ */
 
-function Hero() {
+function DesktopHeroCollage() {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
   const y1 = useTransform(scrollYProgress, [0, 1], [0, -120]);
@@ -129,18 +126,110 @@ function Hero() {
   const y3 = useTransform(scrollYProgress, [0, 1], [0, -180]);
 
   return (
-    <section id="home" ref={ref} className="relative min-h-[100svh] pt-20 lg:pt-24 pb-16 overflow-hidden bg-mesh noise">
+    <div ref={ref} className="lg:col-span-6 relative h-[520px] sm:h-[620px] lg:h-[680px]">
+      <motion.div style={{ y: y1 }} className="absolute top-0 right-0 w-[58%] h-[62%] rounded-3xl overflow-hidden shadow-luxe">
+        <motion.img
+          src={heroMural}
+          alt="Bolava vitthal wall mural"
+          loading="eager"
+          fetchPriority="high"
+          decoding="async"
+          className="h-full w-full object-cover"
+          initial={{ scale: 1.15 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 1.4, ease: "easeOut" }}
+        />
+      </motion.div>
+      <motion.div style={{ y: y2 }} className="absolute top-[18%] left-0 w-[54%] sm:w-[56%] h-[30%] sm:h-[34%] rounded-3xl overflow-hidden shadow-soft border-4 border-white animate-float">
+        <img src={heroMurti} alt="Decorative fish wall Design" loading="eager" decoding="async" width={340} height={191} className="h-full w-full object-cover" />
+      </motion.div>
+      <motion.div style={{ y: y3 }} className="absolute bottom-0 left-[10%] w-[48%] h-[44%] rounded-3xl overflow-hidden shadow-luxe border-4 border-white">
+        <img src={heroPainting} alt="Autmn tree painting" loading="eager" decoding="async" width={400} height={241} className="h-full w-full object-cover" />
+      </motion.div>
+      <motion.div style={{ y: y2 }} className="absolute bottom-[8%] right-0 w-[36%] h-[36%] rounded-3xl overflow-hidden shadow-soft border-4 border-white">
+        <img src={heroNameplate} alt="Custom artistic nameplate design" loading="eager" decoding="async" className="h-full w-full object-cover" />
+      </motion.div>
+
+      {/* floating badge */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.6 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ delay: 1.2, duration: 0.7 }}
+        className="absolute top-[55%] left-[35%] -translate-x-1/2 -translate-y-1/2 h-28 w-28 rounded-full bg-gold-gradient flex items-center justify-center shadow-luxe animate-float"
+      >
+        <div className="text-center">
+          <Sparkles className="h-5 w-5 mx-auto text-white" />
+          <div className="text-[9px] tracking-[0.3em] uppercase text-white mt-1 font-semibold">Custom</div>
+          <div className="text-[9px] tracking-[0.3em] uppercase text-white">Artwork</div>
+        </div>
+      </motion.div>
+    </div>
+  );
+}
+
+function MobileHeroCollage() {
+  return (
+    <div className="lg:col-span-6 relative h-[520px] sm:h-[620px] lg:h-[680px]">
+      <div className="absolute top-0 right-0 w-[58%] h-[62%] rounded-3xl overflow-hidden shadow-luxe">
+        <img
+          src={heroMural}
+          alt="Bolava vitthal wall mural"
+          loading="eager"
+          fetchPriority="high"
+          decoding="async"
+          width={360}
+          height={450}
+          className="h-full w-full object-cover"
+        />
+      </div>
+      <div className="absolute top-[18%] left-0 w-[54%] sm:w-[56%] h-[30%] sm:h-[34%] rounded-3xl overflow-hidden shadow-soft border-4 border-white">
+        <img src={heroMurti} alt="Decorative fish wall Design" loading="eager" decoding="async" width={340} height={191} className="h-full w-full object-cover" />
+      </div>
+      <div className="absolute bottom-0 left-[10%] w-[48%] h-[44%] rounded-3xl overflow-hidden shadow-luxe border-4 border-white">
+        <img src={heroPainting} alt="Autmn tree painting" loading="eager" decoding="async" width={400} height={241} className="h-full w-full object-cover" />
+      </div>
+      <div className="absolute bottom-[8%] right-0 w-[36%] h-[36%] rounded-3xl overflow-hidden shadow-soft border-4 border-white">
+        <img src={heroNameplate} alt="Custom artistic nameplate design" loading="eager" decoding="async" className="h-full w-full object-cover" />
+      </div>
+
+      {/* floating badge */}
+      <div className="absolute top-[55%] left-[35%] -translate-x-1/2 -translate-y-1/2 h-28 w-28 rounded-full bg-gold-gradient flex items-center justify-center shadow-luxe">
+        <div className="text-center">
+          <Sparkles className="h-5 w-5 mx-auto text-white" />
+          <div className="text-[9px] tracking-[0.3em] uppercase text-white mt-1 font-semibold">Custom</div>
+          <div className="text-[9px] tracking-[0.3em] uppercase text-white">Artwork</div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function Hero() {
+  const [isDesktop, setIsDesktop] = useState(() =>
+    typeof window !== "undefined" ? window.innerWidth >= 1024 : true,
+  );
+
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 1024px)");
+    const update = () => setIsDesktop(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+
+  return (
+    <section id="home" className="relative min-h-[100svh] pt-20 lg:pt-24 pb-16 overflow-hidden bg-mesh noise">
       {/* floating decorative blobs */}
-      <div className="absolute -top-20 -left-20 h-[420px] w-[420px] rounded-full bg-gold-gradient opacity-30 blur-3xl" />
-      <div className="absolute -bottom-32 right-0 h-[520px] w-[520px] rounded-full bg-royal-gradient opacity-25 blur-3xl" />
+      <div className="absolute -top-20 -left-20 h-[420px] w-[420px] rounded-full hero-blob-gold" />
+      <div className="absolute -bottom-32 right-0 h-[520px] w-[520px] rounded-full hero-blob-royal" />
 
       <div className="relative mx-auto max-w-7xl px-5 sm:px-8 grid lg:grid-cols-12 gap-10 items-center">
         {/* Left */}
         <div className="lg:col-span-6 space-y-8">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0.9, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.3 }}
             className="inline-flex items-center gap-3 rounded-full glass px-4 py-2 text-[11px] tracking-[0.25em] uppercase text-[color:var(--royal-deep)]"
           >
             <span className="h-1.5 w-1.5 rounded-full bg-gold-gradient" />
@@ -149,28 +238,28 @@ function Hero() {
 
           <h1 className="font-display font-medium leading-[0.95] tracking-tight text-[clamp(2rem,4.2vw,3.6rem)] text-[color:var(--charcoal)]">
             <SplitReveal text="Where" />{" "}
-            <SplitReveal text="art" delay={0.15} />{" "}
-            <span className="text-gradient-gold"><SplitReveal text="is born." delay={0.3} /></span>
+            <SplitReveal text="art" delay={0.04} />{" "}
+            <span className="text-gradient-gold"><SplitReveal text="is born." delay={0.08} /></span>
             <br />
-            <SplitReveal text="Crafted" delay={0.45} />{" "}
-            <SplitReveal text="by hand," delay={0.6} />
+            <SplitReveal text="Crafted" delay={0.1} />{" "}
+            <SplitReveal text="by hand," delay={0.14} />
             <br />
-            <span className="text-[color:var(--royal-deep)]"><SplitReveal text="loved forever." delay={0.75} /></span>
+            <span className="text-[color:var(--royal-deep)]"><SplitReveal text="loved forever." delay={0.18} /></span>
           </h1>
 
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0.9, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.9, duration: 0.8 }}
+            transition={{ delay: 0.1, duration: 0.35 }}
             className="text-base sm:text-lg text-[color:var(--muted-foreground)] max-w-xl leading-relaxed"
           >
             Nakshikar's Studio is a creative atelier crafting <em>paintings, murals, sculptures, signages, branding</em> and digital design for homes, hotels, corporates and cultural spaces.
           </motion.p>
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0.9, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.05, duration: 0.8 }}
+            transition={{ delay: 0.15, duration: 0.35 }}
             className="flex flex-wrap items-center gap-4"
           >
             <Link to="/portfolio" className="group inline-flex items-center gap-2 rounded-full bg-royal-gradient text-white px-7 py-4 text-[12px] tracking-[0.22em] uppercase font-medium shadow-luxe hover:scale-[1.03] transition-transform">
@@ -182,9 +271,9 @@ function Hero() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0 }}
+            initial={{ opacity: 0.9 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 1.3, duration: 1 }}
+            transition={{ delay: 0.2, duration: 0.35 }}
             className="flex items-center gap-8 pt-4"
           >
             {[
@@ -201,44 +290,7 @@ function Hero() {
         </div>
 
         {/* Right collage */}
-        <div className="lg:col-span-6 relative h-[520px] sm:h-[620px] lg:h-[680px]">
-          <motion.div style={{ y: y1 }} className="absolute top-0 right-0 w-[58%] h-[62%] rounded-3xl overflow-hidden shadow-luxe">
-            <motion.img
-              src={heroMural}
-              alt="Bolava vitthal wall mural"
-              loading="eager"
-              fetchPriority="high"
-              decoding="async"
-              className="h-full w-full object-cover"
-              initial={{ scale: 1.15 }}
-              animate={{ scale: 1 }}
-              transition={{ duration: 1.4, ease: "easeOut" }}
-            />
-          </motion.div>
-          <motion.div style={{ y: y2 }} className="absolute top-[18%] left-0 w-[54%] sm:w-[56%] h-[30%] sm:h-[34%] rounded-3xl overflow-hidden shadow-soft border-4 border-white animate-float">
-            <img src={heroMurti} alt="Decorative fish wall Design" loading="eager" fetchPriority="high" decoding="async" className="h-full w-full object-cover" />
-          </motion.div>
-          <motion.div style={{ y: y3 }} className="absolute bottom-0 left-[10%] w-[48%] h-[44%] rounded-3xl overflow-hidden shadow-luxe border-4 border-white">
-            <img src={heroPainting} alt="Autmn tree painting" loading="eager" fetchPriority="high" decoding="async" className="h-full w-full object-cover" />
-          </motion.div>
-          <motion.div style={{ y: y2 }} className="absolute bottom-[8%] right-0 w-[36%] h-[36%] rounded-3xl overflow-hidden shadow-soft border-4 border-white">
-            <img src={heroNameplate} alt="Custom artistic nameplate design" loading="eager" fetchPriority="high" decoding="async" className="h-full w-full object-cover" />
-          </motion.div>
-
-          {/* floating badge */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.6 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 1.2, duration: 0.7 }}
-            className="absolute top-[55%] left-[35%] -translate-x-1/2 -translate-y-1/2 h-28 w-28 rounded-full bg-gold-gradient flex items-center justify-center shadow-luxe animate-float"
-          >
-            <div className="text-center">
-              <Sparkles className="h-5 w-5 mx-auto text-white" />
-              <div className="text-[9px] tracking-[0.3em] uppercase text-white mt-1 font-semibold">Custom</div>
-              <div className="text-[9px] tracking-[0.3em] uppercase text-white">Artwork</div>
-            </div>
-          </motion.div>
-        </div>
+        {isDesktop ? <DesktopHeroCollage /> : <MobileHeroCollage />}
       </div>
     </section>
   );
@@ -248,9 +300,9 @@ function SplitReveal({ text, delay = 0 }: { text: string; delay?: number }) {
   return (
     <span className="inline-block overflow-hidden align-baseline">
       <motion.span
-        initial={{ y: "110%" }}
+        initial={{ y: 14 }}
         animate={{ y: 0 }}
-        transition={{ delay, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ delay, duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
         className="inline-block"
       >
         {text}
@@ -456,15 +508,39 @@ function FAQ() {
 /* ------------------------------ PAGE ------------------------------ */
 
 function Home() {
+  const [stage, setStage] = useState(() =>
+    typeof window !== "undefined" && window.innerWidth >= 768 ? 2 : 0,
+  );
+
+  useEffect(() => {
+    if (stage >= 2) return;
+    const t1 = setTimeout(() => setStage(1), 60);
+    const t2 = setTimeout(() => setStage(2), 180);
+    return () => {
+      clearTimeout(t1);
+      clearTimeout(t2);
+    };
+  }, [stage]);
+
   return (
     <div className="bg-background text-foreground overflow-x-hidden">
       <Hero />
       <Marquee />
-      <WhatWeCreate />
-      <AboutSection />
-      <Process />
-      <FAQ />
-      <Testimonials />
+      {stage >= 1 ? (
+        <>
+          <WhatWeCreate />
+          <AboutSection />
+        </>
+      ) : (
+        <div className="min-h-[1200px]" aria-hidden="true" />
+      )}
+      {stage >= 2 ? (
+        <>
+          <Process />
+          <FAQ />
+          <Testimonials />
+        </>
+      ) : null}
     </div>
   );
 }

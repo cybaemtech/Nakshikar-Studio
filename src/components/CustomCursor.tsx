@@ -38,10 +38,20 @@ const colors = [
 export function CustomCursor() {
   const [mousePos, setMousePos] = useState({ x: -100, y: -100 });
   const [splatters, setSplatters] = useState<Splatter[]>([]);
-  const [isMobile, setIsMobile] = useState(false);
+  const [enabled, setEnabled] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
+    if (typeof window === "undefined") return;
+    const finePointer = window.matchMedia("(pointer: fine)");
+    const update = () => setEnabled(finePointer.matches);
+    update();
+    finePointer.addEventListener("change", update);
+    return () => finePointer.removeEventListener("change", update);
+  }, []);
+
+  useEffect(() => {
+    if (!enabled) return;
     let lastTime = 0;
 
     const addSplatter = (clientX: number, clientY: number) => {
@@ -65,47 +75,26 @@ export function CustomCursor() {
 
     // Mouse handlers
     const handleMouseMove = (e: MouseEvent) => {
-      if (!isVisible) setIsVisible(true);
+      setIsVisible(true);
       setMousePos({ x: e.clientX, y: e.clientY });
       addSplatter(e.clientX, e.clientY);
     };
     const handleMouseLeave = () => setIsVisible(false);
     const handleMouseEnter = () => setIsVisible(true);
 
-    // Touch handlers
-    const handleTouchStart = (e: TouchEvent) => {
-      setIsVisible(true);
-      setMousePos({ x: e.touches[0].clientX, y: e.touches[0].clientY });
-      addSplatter(e.touches[0].clientX, e.touches[0].clientY);
-    };
-    const handleTouchMove = (e: TouchEvent) => {
-      setMousePos({ x: e.touches[0].clientX, y: e.touches[0].clientY });
-      addSplatter(e.touches[0].clientX, e.touches[0].clientY);
-    };
-    const handleTouchEnd = () => setIsVisible(false);
-
-    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
     document.addEventListener('mouseleave', handleMouseLeave);
     document.addEventListener('mouseenter', handleMouseEnter);
 
-    window.addEventListener('touchstart', handleTouchStart);
-    window.addEventListener('touchmove', handleTouchMove);
-    window.addEventListener('touchend', handleTouchEnd);
-    window.addEventListener('touchcancel', handleTouchEnd);
-    
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
       document.removeEventListener('mouseleave', handleMouseLeave);
       document.removeEventListener('mouseenter', handleMouseEnter);
-
-      window.removeEventListener('touchstart', handleTouchStart);
-      window.removeEventListener('touchmove', handleTouchMove);
-      window.removeEventListener('touchend', handleTouchEnd);
-      window.removeEventListener('touchcancel', handleTouchEnd);
     };
-  }, [isVisible]);
+  }, [enabled]);
 
   useEffect(() => {
+    if (!enabled) return;
     // Auto remove splatters slowly
     const interval = setInterval(() => {
       setSplatters((prev) => {
@@ -117,7 +106,9 @@ export function CustomCursor() {
     }, 250);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [enabled]);
+
+  if (!enabled) return null;
 
   return (
     <div className="pointer-events-none fixed inset-0 z-[100000] overflow-hidden" style={{ display: isVisible ? 'block' : 'none' }}>

@@ -74,7 +74,6 @@ export const Route = createFileRoute("/services")({
       { rel: "canonical", href: "https://nakshikarsstudio.com/services" },
     ],
   }),
-}).update({
   component: Services,
 });
 

@@ -79,7 +79,6 @@ export const Route = createFileRoute("/about")({
       { rel: "canonical", href: "https://nakshikarsstudio.com/about" },
     ],
   }),
-}).update({
   component: AboutPage,
 });
 

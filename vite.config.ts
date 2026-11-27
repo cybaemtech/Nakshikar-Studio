@@ -60,9 +60,22 @@ export default defineConfig({
   plugins: [
     emailApiPlugin(),
     seoDevPlugin(),
-    TanStackRouterVite({ target: "react", autoCodeSplitting: false }),
+    TanStackRouterVite({ target: "react", autoCodeSplitting: true }),
     tailwindcss(),
     tsConfigPaths({ projects: ["./tsconfig.json"] }),
     viteReact(),
   ],
+  build: {
+    rolldownOptions: {
+      output: {
+        codeSplitting: {
+          groups: [
+            { name: "vendor-react", test: /node_modules[\\/](react|react-dom|scheduler)[\\/]/, priority: 30 },
+            { name: "vendor-motion", test: /node_modules[\\/]framer-motion[\\/]/, priority: 20 },
+            { name: "vendor-tanstack", test: /node_modules[\\/]@tanstack[\\/]/, priority: 10 },
+          ],
+        },
+      },
+    },
+  },
 });

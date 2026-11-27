@@ -7,9 +7,30 @@
       w[l] = w[l] || []; w[l].push({
         'gtm.start':
           new Date().getTime(), event: 'gtm.js'
-      }); var f = d.getElementsByTagName(s)[0],
-        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
-          'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+      });
+      var loaded = false;
+      function loadGtm() {
+        if (loaded) return;
+        loaded = true;
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+      }
+      if (w.innerWidth >= 768) {
+        loadGtm();
+      } else {
+        var events = ['pointerdown', 'touchstart', 'scroll', 'keydown'];
+        var onInteract = function () {
+          events.forEach(function (ev) { w.removeEventListener(ev, onInteract); });
+          loadGtm();
+        };
+        events.forEach(function (ev) { w.addEventListener(ev, onInteract, { once: true, passive: true }); });
+        w.addEventListener('load', function () {
+          setTimeout(onInteract, 5500);
+        }, { once: true });
+      }
     })(window, document, 'script', 'dataLayer', 'GTM-N43KCWF7');</script>
   <!-- End Google Tag Manager -->
   <meta charset="UTF-8" />
@@ -44,12 +65,202 @@
   <meta data-prerender="true" name="twitter:image:alt"
     content="Nakshikar's Studio - Custom Art & Painting Studio in Pune" />
 
-  <!-- Fonts -->
+  <!-- Fonts (non-blocking) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
+    rel="preload"
+    as="image"
+    href="/splash-logo-sm.webp"
+    imagesrcset="/splash-logo-sm.webp 400w, /splash-logo.webp 640w"
+    imagesizes="(max-width: 639px) 320px, 560px"
+    fetchpriority="high" />
+  <link
+    rel="preload"
+    as="style"
     href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&family=Tiro+Devanagari+Marathi&display=swap"
-    rel="stylesheet" />
+    onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&family=Tiro+Devanagari+Marathi&display=swap"
+      rel="stylesheet" />
+  </noscript>
+
+  <style>
+    #initial-splash {
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background-color: #fcfaf5;
+      color: #21232d;
+      overflow: hidden;
+      user-select: none;
+      -webkit-user-select: none;
+      font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+      transition: transform 0.45s cubic-bezier(0.76, 0, 0.24, 1), opacity 0.45s cubic-bezier(0.76, 0, 0.24, 1);
+    }
+    #initial-splash.splash-exit {
+      transform: translateY(-100%);
+      opacity: 0.9;
+      pointer-events: none;
+    }
+    #initial-splash .is-blob-gold {
+      position: absolute;
+      top: -8rem;
+      left: -8rem;
+      width: 450px;
+      height: 450px;
+      border-radius: 9999px;
+      background: linear-gradient(135deg, #c29547, #e9cd83, #ad7c32);
+      opacity: 0.2;
+      filter: blur(64px);
+    }
+    #initial-splash .is-blob-royal {
+      position: absolute;
+      bottom: -8rem;
+      right: -8rem;
+      width: 450px;
+      height: 450px;
+      border-radius: 9999px;
+      background: linear-gradient(135deg, #1b244e, #2a397c, #374699);
+      opacity: 0.25;
+      filter: blur(64px);
+    }
+    @media (max-width: 767px) {
+      #initial-splash .is-blob-gold {
+        background: radial-gradient(circle, rgba(233, 205, 131, 0.45) 0%, rgba(194, 149, 71, 0.16) 45%, transparent 72%);
+        opacity: 1;
+        filter: none;
+      }
+      #initial-splash .is-blob-royal {
+        background: radial-gradient(circle, rgba(42, 57, 124, 0.38) 0%, rgba(27, 36, 78, 0.14) 45%, transparent 72%);
+        opacity: 1;
+        filter: none;
+      }
+    }
+    #initial-splash .is-inner {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 0 1.5rem;
+      max-width: 56rem;
+      width: 100%;
+    }
+    #initial-splash .is-welcome {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: #a87b2d;
+    }
+    @media (min-width: 640px) {
+      #initial-splash .is-welcome { font-size: 0.875rem; }
+    }
+    #initial-splash .is-word-wrap {
+      display: inline-block;
+      overflow: hidden;
+      padding: 0.25rem 0;
+    }
+    #initial-splash .is-word {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(100%);
+      animation: isWordIn 0.35s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+    #initial-splash .is-word-2 {
+      animation-delay: 0.12s;
+    }
+    #initial-splash .is-logo-wrap {
+      margin: 2rem 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: isFadeUp 0.45s cubic-bezier(0.22, 1, 0.36, 1) 0.18s forwards;
+    }
+    #initial-splash .is-logo {
+      height: 6rem;
+      width: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.12));
+    }
+    @media (min-width: 640px) { #initial-splash .is-logo { height: 10rem; } }
+    @media (min-width: 768px) { #initial-splash .is-logo { height: 13rem; } }
+    @media (min-width: 1024px) { #initial-splash .is-logo { height: 16rem; } }
+    #initial-splash .is-tagline {
+      margin-top: 1.5rem;
+      font-family: "Tiro Devanagari Marathi", "Noto Serif Devanagari", serif;
+      font-size: 1.125rem;
+      color: #1b244e;
+      letter-spacing: 0.025em;
+      opacity: 0;
+      transform: translateY(12px);
+      animation: isFadeUp 0.4s cubic-bezier(0.22, 1, 0.36, 1) 0.4s forwards;
+    }
+    @media (min-width: 640px) {
+      #initial-splash .is-tagline { font-size: 1.25rem; }
+    }
+    #initial-splash .is-progress-track {
+      width: 12rem;
+      height: 2px;
+      background-color: rgba(33, 35, 45, 0.1);
+      border-radius: 9999px;
+      margin-top: 2.5rem;
+      overflow: hidden;
+      position: relative;
+    }
+    #initial-splash .is-progress-bar {
+      height: 100%;
+      width: 100%;
+      background: linear-gradient(135deg, #c29547, #e9cd83, #ad7c32);
+      transform: translateX(-100%);
+      animation: isProgress 1.15s ease-in-out 0.1s forwards;
+    }
+    #initial-splash .is-skip {
+      position: absolute;
+      bottom: 2rem;
+      right: 2rem;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+      color: rgba(33, 35, 45, 0.8);
+      padding: 0.5rem 1rem;
+      border-radius: 9999px;
+      border: 1px solid rgba(33, 35, 45, 0.1);
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: saturate(160%) blur(18px);
+      cursor: pointer;
+      opacity: 0.8;
+      transition: opacity 0.2s ease, color 0.2s ease;
+    }
+    #initial-splash .is-skip:hover {
+      opacity: 1;
+      color: #21232d;
+    }
+    @keyframes isWordIn {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes isFadeUp {
+      to { opacity: 0.95; transform: translateY(0); }
+    }
+    @keyframes isProgress {
+      to { transform: translateX(0%); }
+    }
+  </style>
 </head>
 
 <body>
@@ -57,6 +268,65 @@
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N43KCWF7" height="0" width="0"
       style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
+
+  <!-- Instant Splash Screen (starts immediately before JS loads on home first visit) -->
+  <div id="initial-splash" role="presentation">
+    <div class="is-blob-gold"></div>
+    <div class="is-blob-royal"></div>
+    <div class="is-inner">
+      <div class="is-welcome">
+        <span class="is-word-wrap"><span class="is-word">Welcome</span></span>
+        <span class="is-word-wrap"><span class="is-word is-word-2">to</span></span>
+      </div>
+      <div class="is-logo-wrap">
+        <img
+          src="/splash-logo-sm.webp"
+          srcset="/splash-logo-sm.webp 400w, /splash-logo.webp 640w"
+          sizes="(max-width: 639px) 320px, 560px"
+          alt="Nakshikar's Studio"
+          class="is-logo"
+          fetchpriority="high"
+          decoding="async" />
+      </div>
+      <p class="is-tagline">जिथे नक्षी जन्मा येते.</p>
+      <div class="is-progress-track">
+        <div class="is-progress-bar"></div>
+      </div>
+    </div>
+    <button id="initial-splash-skip" type="button" class="is-skip">Enter Studio ➔</button>
+  </div>
+  <script>
+    (function () {
+      var el = document.getElementById("initial-splash");
+      if (!el) return;
+      try {
+        var p = window.location.pathname;
+        var isHome = p === "/" || p === "";
+        var hasSeen = sessionStorage.getItem("nakshikar_splash_seen");
+        if (!isHome || hasSeen) {
+          el.parentNode.removeChild(el);
+          return;
+        }
+        window.__SPLASH_HANDLED_BY_HTML__ = true;
+        el.style.display = "flex";
+        sessionStorage.setItem("nakshikar_splash_seen", "true");
+        var closeSplash = function () {
+          if (!el || el.dataset.closing) return;
+          el.dataset.closing = "1";
+          el.classList.add("splash-exit");
+          setTimeout(function () {
+            if (el && el.parentNode) el.parentNode.removeChild(el);
+          }, 450);
+        };
+        var skipBtn = document.getElementById("initial-splash-skip");
+        if (skipBtn) skipBtn.addEventListener("click", closeSplash);
+        setTimeout(closeSplash, 1400);
+      } catch (e) {
+        if (el && el.parentNode) el.parentNode.removeChild(el);
+      }
+    })();
+  </script>
+
   <div id="root"></div>
   <script type="module" src="/src/main.tsx"></script>
 </body>
