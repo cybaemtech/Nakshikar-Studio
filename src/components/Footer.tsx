@@ -91,6 +91,15 @@ const SOCIAL_LINKS = [
   },
 ];
 
+function SubscribeForm({ className = "" }: { className?: string }) {
+  return (
+    <form onSubmit={(e) => e.preventDefault()} className={`flex items-center gap-2 rounded-full glass-dark p-1.5 ${className}`}>
+      <input placeholder="Subscribe to our journal" className="bg-transparent px-4 py-2 text-sm outline-none flex-1 min-w-0 text-white placeholder:text-white/40" />
+      <button className="shrink-0 rounded-full bg-gold-gradient text-white px-4 py-2 text-[11px] tracking-[0.2em] uppercase">Join</button>
+    </form>
+  );
+}
+
 export function Footer() {
   const gallery = [
     { src: painting, alt: "Vertical multicolour abstract painting with gold lines" },
@@ -103,11 +112,11 @@ export function Footer() {
     { src: graphics, alt: "Ramalay 2 BHK and 3 BHK luxury flats in Taljai, Pune: real estate graphic design" },
   ];
   return (
-    <footer className="bg-[color:var(--charcoal)] text-white relative overflow-hidden mt-auto">
+    <footer className="mobile-offscreen-defer bg-[color:var(--charcoal)] text-white relative overflow-hidden mt-auto">
       <div className="absolute inset-0 bg-mesh opacity-15" />
       <div className="relative mx-auto max-w-7xl px-5 sm:px-8 py-20">
-        <div className="grid lg:grid-cols-12 gap-12">
-          <div className="lg:col-span-5 space-y-6">
+        <div className="grid grid-cols-12 gap-x-5 gap-y-10 lg:gap-12">
+          <div className="col-span-12 lg:col-span-5 space-y-6">
             <Link to="/" aria-label="Nakshikar's Studio Home" className="inline-block transition-transform hover:opacity-90">
               <img src={logo} alt="Nakshikar's Studio" width={180} height={59} loading="lazy" decoding="async" className="h-12 w-auto bg-white rounded-xl p-2" />
             </Link>
@@ -149,7 +158,7 @@ export function Footer() {
             </div>
           </div>
 
-          <div className="lg:col-span-3">
+          <div className="col-span-5 sm:col-span-4 lg:col-span-3">
             <div className="text-[11px] tracking-[0.25em] uppercase text-[color:var(--gold)] mb-5">Explore</div>
             <ul className="space-y-3 text-sm text-white/80">
               {NAV.map((n) => (
@@ -159,19 +168,20 @@ export function Footer() {
             </ul>
           </div>
 
-          <div className="lg:col-span-4">
+          <div className="col-span-7 sm:col-span-8 lg:col-span-4">
             <div className="text-[11px] tracking-[0.25em] uppercase text-[color:var(--gold)] mb-5">From the studio</div>
-            <div className="grid grid-cols-4 gap-2 mb-6">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 lg:mb-6">
               {gallery.map((g, i) => (
                 <div key={i} className="aspect-square rounded-lg overflow-hidden">
                   <img src={g.src} alt={g.alt} loading="lazy" decoding="async" className="h-full w-full object-cover hover:scale-110 transition-transform duration-700" />
                 </div>
               ))}
             </div>
-            <form onSubmit={(e) => e.preventDefault()} className="flex items-center gap-2 rounded-full glass-dark p-1.5">
-              <input placeholder="Subscribe to our journal" className="bg-transparent px-4 py-2 text-sm outline-none flex-1 text-white placeholder:text-white/40" />
-              <button className="rounded-full bg-gold-gradient text-white px-4 py-2 text-[11px] tracking-[0.2em] uppercase">Join</button>
-            </form>
+            <SubscribeForm className="hidden lg:flex" />
+          </div>
+
+          <div className="col-span-12 lg:hidden">
+            <SubscribeForm />
           </div>
         </div>
 

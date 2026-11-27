@@ -182,6 +182,18 @@
   }
 }
 
+@media (max-width: 767px) {
+  .mobile-offscreen-defer {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 700px;
+  }
+  .glass {
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+}
+
 @utility bg-mesh {
   background-image:
     radial-gradient(at 12% 18%, color-mix(in oklab, var(--gold) 26%, transparent) 0px, transparent 45%),

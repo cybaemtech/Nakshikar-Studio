@@ -1,4 +1,13 @@
-﻿import { CATEGORIES, type Category } from "@/data/worksData";
+export const CATEGORIES = [
+  "Graphics",
+  "Wall Design",
+  "Paintings",
+  "Murals",
+  "Nameplates",
+  "Interior Support",
+] as const;
+
+export type Category = (typeof CATEGORIES)[number];
 
 export const CATEGORY_SLUG_MAP: Record<Category, string> = {
   "Graphics": "graphics",

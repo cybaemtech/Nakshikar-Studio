@@ -1,4 +1,7 @@
 import { getAltTagForImage } from "./imageAltTags";
+import { CATEGORIES, type Category } from "@/lib/categorySlugs";
+
+export { CATEGORIES, type Category };
 
 export interface WorkItem {
   id: string;
@@ -10,17 +13,6 @@ export interface WorkItem {
   alt: string;
   isNewFolder?: boolean;
 }
-
-export const CATEGORIES = [
-  "Graphics",
-  "Wall Design",
-  "Paintings",
-  "Murals",
-  "Nameplates",
-  "Interior Support",
-] as const;
-
-export type Category = (typeof CATEGORIES)[number];
 
 // Dynamically import all images inside src/assets/NAKSHIKAR including New folder
 const rawGlobImages = import.meta.glob<string>(

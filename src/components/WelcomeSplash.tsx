@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import logo from "@/assets/logo.webp";
 import logoSm from "@/assets/logo-sm.webp";
 
@@ -35,7 +35,7 @@ export function WelcomeSplash() {
   return (
     <AnimatePresence>
       {showSplash && (
-        <motion.div
+        <m.div
           key="welcome-splash"
           initial={{ opacity: 1 }}
           exit={{ y: "-100%", opacity: 0.9 }}
@@ -51,7 +51,7 @@ export function WelcomeSplash() {
             <div className="flex flex-wrap justify-center gap-3 mb-3 text-xs sm:text-sm tracking-[0.35em] uppercase font-semibold text-[color:var(--gold-deep)]">
               {welcomeWords.map((word, i) => (
                 <span key={`w1-${i}`} className="inline-block overflow-hidden py-1">
-                  <motion.span
+                  <m.span
                     initial={{ y: "100%", opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{
@@ -62,13 +62,13 @@ export function WelcomeSplash() {
                     className="inline-block"
                   >
                     {word}
-                  </motion.span>
+                  </m.span>
                 </span>
               ))}
             </div>
 
             {/* Logo replacing text */}
-            <motion.div
+            <m.div
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{
@@ -85,21 +85,21 @@ export function WelcomeSplash() {
                 alt="Nakshikar's Studio"
                 className="h-24 xs:h-32 sm:h-40 md:h-52 lg:h-64 w-auto object-contain filter drop-shadow-[0_8px_24px_rgba(0,0,0,0.12)]"
               />
-            </motion.div>
+            </m.div>
 
             {/* Subline Tagline Devanagari Reveal */}
-            <motion.p
+            <m.p
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 0.9, y: 0 }}
               transition={{ delay: 0.4, duration: 0.4 }}
               className="mt-6 font-devanagari text-lg sm:text-xl text-[color:var(--royal-deep)] tracking-wide"
             >
               जिथे नक्षी जन्मा येते.
-            </motion.p>
+            </m.p>
 
             {/* Subtle Progress Bar */}
             <div className="w-48 h-[2px] bg-[color:var(--charcoal)]/10 rounded-full mt-10 overflow-hidden relative">
-              <motion.div
+              <m.div
                 initial={{ x: "-100%" }}
                 animate={{ x: "0%" }}
                 transition={{ duration: 1.15, delay: 0.1, ease: "easeInOut" }}
@@ -109,7 +109,7 @@ export function WelcomeSplash() {
           </div>
 
           {/* Quick Skip button */}
-          <motion.button
+          <m.button
             initial={{ opacity: 0 }}
             animate={{ opacity: 0.7 }}
             whileHover={{ opacity: 1 }}
@@ -117,8 +117,8 @@ export function WelcomeSplash() {
             className="absolute bottom-8 right-8 text-[11px] uppercase tracking-[0.25em] text-[color:var(--charcoal)]/80 hover:text-[color:var(--charcoal)] transition-colors py-2 px-4 rounded-full border border-[color:var(--charcoal)]/10 glass"
           >
             Enter Studio ➔
-          </motion.button>
-        </motion.div>
+          </m.button>
+        </m.div>
       )}
     </AnimatePresence>
   );

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import logo from "@/assets/nav-logo.webp";
@@ -70,7 +70,7 @@ export function Nav() {
       </div>
       <AnimatePresence>
         {open && (
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
@@ -90,7 +90,7 @@ export function Nav() {
             <Link to="/contact" onClick={() => setOpen(false)} className="rounded-full bg-royal-gradient text-white px-5 py-2.5 text-xs tracking-[0.18em] uppercase text-center">
               Let's start
             </Link>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
     </header>

@@ -28,7 +28,7 @@
         };
         events.forEach(function (ev) { w.addEventListener(ev, onInteract, { once: true, passive: true }); });
         w.addEventListener('load', function () {
-          setTimeout(onInteract, 5500);
+          setTimeout(onInteract, 10000);
         }, { once: true });
       }
     })(window, document, 'script', 'dataLayer', 'GTM-N43KCWF7');</script>

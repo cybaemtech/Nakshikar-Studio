@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useRef, useState } from "react";
-import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { lazy, Suspense, useEffect, useState } from "react";
+import { m, AnimatePresence } from "framer-motion";
 import { Sparkles, Plus, Minus, ArrowUpRight, ArrowRight, Lightbulb, PencilRuler, Monitor, Paintbrush, Settings, Landmark } from "lucide-react";
 
 import heroMural from "@/assets/services/services/hero-mural.webp";
@@ -118,54 +118,7 @@ export const Route = createFileRoute("/")({
 
 /* ------------------------------ HERO ------------------------------ */
 
-function DesktopHeroCollage() {
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
-  const y1 = useTransform(scrollYProgress, [0, 1], [0, -120]);
-  const y2 = useTransform(scrollYProgress, [0, 1], [0, -60]);
-  const y3 = useTransform(scrollYProgress, [0, 1], [0, -180]);
-
-  return (
-    <div ref={ref} className="lg:col-span-6 relative h-[520px] sm:h-[620px] lg:h-[680px]">
-      <motion.div style={{ y: y1 }} className="absolute top-0 right-0 w-[58%] h-[62%] rounded-3xl overflow-hidden shadow-luxe">
-        <motion.img
-          src={heroMural}
-          alt="Bolava vitthal wall mural"
-          loading="eager"
-          fetchPriority="high"
-          decoding="async"
-          className="h-full w-full object-cover"
-          initial={{ scale: 1.15 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 1.4, ease: "easeOut" }}
-        />
-      </motion.div>
-      <motion.div style={{ y: y2 }} className="absolute top-[18%] left-0 w-[54%] sm:w-[56%] h-[30%] sm:h-[34%] rounded-3xl overflow-hidden shadow-soft border-4 border-white animate-float">
-        <img src={heroMurti} alt="Decorative fish wall Design" loading="eager" decoding="async" width={340} height={191} className="h-full w-full object-cover" />
-      </motion.div>
-      <motion.div style={{ y: y3 }} className="absolute bottom-0 left-[10%] w-[48%] h-[44%] rounded-3xl overflow-hidden shadow-luxe border-4 border-white">
-        <img src={heroPainting} alt="Autmn tree painting" loading="eager" decoding="async" width={400} height={241} className="h-full w-full object-cover" />
-      </motion.div>
-      <motion.div style={{ y: y2 }} className="absolute bottom-[8%] right-0 w-[36%] h-[36%] rounded-3xl overflow-hidden shadow-soft border-4 border-white">
-        <img src={heroNameplate} alt="Custom artistic nameplate design" loading="eager" decoding="async" className="h-full w-full object-cover" />
-      </motion.div>
-
-      {/* floating badge */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.6 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 1.2, duration: 0.7 }}
-        className="absolute top-[55%] left-[35%] -translate-x-1/2 -translate-y-1/2 h-28 w-28 rounded-full bg-gold-gradient flex items-center justify-center shadow-luxe animate-float"
-      >
-        <div className="text-center">
-          <Sparkles className="h-5 w-5 mx-auto text-white" />
-          <div className="text-[9px] tracking-[0.3em] uppercase text-white mt-1 font-semibold">Custom</div>
-          <div className="text-[9px] tracking-[0.3em] uppercase text-white">Artwork</div>
-        </div>
-      </motion.div>
-    </div>
-  );
-}
+const DesktopHeroCollage = lazy(() => import("@/components/DesktopHeroCollage"));
 
 function MobileHeroCollage() {
   return (
@@ -208,6 +161,9 @@ function Hero() {
   const [isDesktop, setIsDesktop] = useState(() =>
     typeof window !== "undefined" ? window.innerWidth >= 1024 : true,
   );
+  const [isMobileView] = useState(() =>
+    typeof window !== "undefined" ? window.innerWidth < 768 : false,
+  );
 
   useEffect(() => {
     const mq = window.matchMedia("(min-width: 1024px)");
@@ -216,6 +172,38 @@ function Hero() {
     mq.addEventListener("change", update);
     return () => mq.removeEventListener("change", update);
   }, []);
+
+  const badgeClass =
+    "inline-flex items-center gap-3 rounded-full glass px-4 py-2 text-[11px] tracking-[0.25em] uppercase text-[color:var(--royal-deep)]";
+  const badgeContent = (
+    <>
+      <span className="h-1.5 w-1.5 rounded-full bg-gold-gradient" />
+      Design • Art
+    </>
+  );
+
+  const ctaClass = "flex flex-nowrap items-center gap-2.5 sm:gap-4";
+  const ctaContent = (
+    <>
+      <Link to="/portfolio" className="group inline-flex items-center justify-center gap-1.5 sm:gap-2 rounded-full bg-royal-gradient text-white px-4 py-3 sm:px-7 sm:py-4 text-[10px] sm:text-[12px] tracking-[0.12em] sm:tracking-[0.22em] uppercase font-medium whitespace-nowrap shadow-luxe hover:scale-[1.03] transition-transform">
+        Explore Portfolio <ArrowUpRight className="h-3.5 w-3.5 sm:h-4 sm:w-4 transition-transform group-hover:rotate-45" />
+      </Link>
+      <a href="/contact" className="group inline-flex items-center justify-center gap-2 rounded-full border border-[color:var(--gold)]/60 px-4 py-3 sm:px-7 sm:py-4 text-[10px] sm:text-[12px] tracking-[0.12em] sm:tracking-[0.22em] uppercase font-medium whitespace-nowrap text-[color:var(--royal-deep)] hover:bg-[color:var(--gold)]/10 transition-colors">
+        Contact Us
+      </a>
+    </>
+  );
+
+  const statsContent = [
+    { n: "15+", l: "Years" },
+    { n: "700+", l: "Customers" },
+    { n: "500+", l: "Happy Clients" },
+  ].map((s) => (
+    <div key={s.l}>
+      <div className="font-display text-3xl text-gradient-gold">{s.n}</div>
+      <div className="text-[10px] tracking-[0.25em] uppercase text-muted-foreground mt-1">{s.l}</div>
+    </div>
+  ));
 
   return (
     <section id="home" className="relative min-h-[100svh] pt-20 lg:pt-24 pb-16 overflow-hidden bg-mesh noise">
@@ -226,87 +214,99 @@ function Hero() {
       <div className="relative mx-auto max-w-7xl px-5 sm:px-8 grid lg:grid-cols-12 gap-10 items-center">
         {/* Left */}
         <div className="lg:col-span-6 space-y-8">
-          <motion.div
-            initial={{ opacity: 0.9, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3 }}
-            className="inline-flex items-center gap-3 rounded-full glass px-4 py-2 text-[11px] tracking-[0.25em] uppercase text-[color:var(--royal-deep)]"
-          >
-            <span className="h-1.5 w-1.5 rounded-full bg-gold-gradient" />
-            Design • Art
-          </motion.div>
+          {isMobileView ? (
+            <div className={badgeClass}>{badgeContent}</div>
+          ) : (
+            <m.div
+              initial={{ opacity: 0.9, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3 }}
+              className={badgeClass}
+            >
+              {badgeContent}
+            </m.div>
+          )}
 
           <h1 className="font-display font-medium leading-[0.95] tracking-tight text-[clamp(2rem,4.2vw,3.6rem)] text-[color:var(--charcoal)]">
-            <SplitReveal text="Where" />{" "}
-            <SplitReveal text="art" delay={0.04} />{" "}
-            <span className="text-gradient-gold"><SplitReveal text="is born." delay={0.08} /></span>
+            <SplitReveal text="Where" animate={!isMobileView} />{" "}
+            <SplitReveal text="art" delay={0.04} animate={!isMobileView} />{" "}
+            <span className="text-gradient-gold"><SplitReveal text="is born." delay={0.08} animate={!isMobileView} /></span>
             <br />
-            <SplitReveal text="Crafted" delay={0.1} />{" "}
-            <SplitReveal text="by hand," delay={0.14} />
+            <SplitReveal text="Crafted" delay={0.1} animate={!isMobileView} />{" "}
+            <SplitReveal text="by hand," delay={0.14} animate={!isMobileView} />
             <br />
-            <span className="text-[color:var(--royal-deep)]"><SplitReveal text="loved forever." delay={0.18} /></span>
+            <span className="text-[color:var(--royal-deep)]"><SplitReveal text="loved forever." delay={0.18} animate={!isMobileView} /></span>
           </h1>
 
-          <motion.p
-            initial={{ opacity: 0.9, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1, duration: 0.35 }}
-            className="text-base sm:text-lg text-[color:var(--muted-foreground)] max-w-xl leading-relaxed"
-          >
-            Nakshikar's Studio is a creative atelier crafting <em>paintings, murals, sculptures, signages, branding</em> and digital design for homes, hotels, corporates and cultural spaces.
-          </motion.p>
+          {isMobileView ? (
+            <p className="text-base sm:text-lg text-[color:var(--muted-foreground)] max-w-xl leading-relaxed">
+              Nakshikar's Studio is a creative atelier crafting <em>paintings, murals, sculptures, signages, branding</em> and digital design for homes, hotels, corporates and cultural spaces.
+            </p>
+          ) : (
+            <m.p
+              initial={{ opacity: 0.9, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1, duration: 0.35 }}
+              className="text-base sm:text-lg text-[color:var(--muted-foreground)] max-w-xl leading-relaxed"
+            >
+              Nakshikar's Studio is a creative atelier crafting <em>paintings, murals, sculptures, signages, branding</em> and digital design for homes, hotels, corporates and cultural spaces.
+            </m.p>
+          )}
 
-          <motion.div
-            initial={{ opacity: 0.9, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.15, duration: 0.35 }}
-            className="flex flex-wrap items-center gap-4"
-          >
-            <Link to="/portfolio" className="group inline-flex items-center gap-2 rounded-full bg-royal-gradient text-white px-7 py-4 text-[12px] tracking-[0.22em] uppercase font-medium shadow-luxe hover:scale-[1.03] transition-transform">
-              Explore Portfolio <ArrowUpRight className="h-4 w-4 transition-transform group-hover:rotate-45" />
-            </Link>
-            <a href="/contact" className="group inline-flex items-center gap-2 rounded-full border border-[color:var(--gold)]/60 px-7 py-4 text-[12px] tracking-[0.22em] uppercase font-medium text-[color:var(--royal-deep)] hover:bg-[color:var(--gold)]/10 transition-colors">
-              Contact Us
-            </a>
-          </motion.div>
+          {isMobileView ? (
+            <div className={ctaClass}>{ctaContent}</div>
+          ) : (
+            <m.div
+              initial={{ opacity: 0.9, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.15, duration: 0.35 }}
+              className={ctaClass}
+            >
+              {ctaContent}
+            </m.div>
+          )}
 
-          <motion.div
-            initial={{ opacity: 0.9 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2, duration: 0.35 }}
-            className="flex items-center gap-8 pt-4"
-          >
-            {[
-              { n: "15+", l: "Years" },
-              { n: "700+", l: "Customers" },
-              { n: "500+", l: "Happy Clients" },
-            ].map((s) => (
-              <div key={s.l}>
-                <div className="font-display text-3xl text-gradient-gold">{s.n}</div>
-                <div className="text-[10px] tracking-[0.25em] uppercase text-muted-foreground mt-1">{s.l}</div>
-              </div>
-            ))}
-          </motion.div>
+          {isMobileView ? (
+            <div className="flex items-center gap-8 pt-4">{statsContent}</div>
+          ) : (
+            <m.div
+              initial={{ opacity: 0.9 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.2, duration: 0.35 }}
+              className="flex items-center gap-8 pt-4"
+            >
+              {statsContent}
+            </m.div>
+          )}
         </div>
 
         {/* Right collage */}
-        {isDesktop ? <DesktopHeroCollage /> : <MobileHeroCollage />}
+        {isDesktop ? (
+          <Suspense fallback={<MobileHeroCollage />}>
+            <DesktopHeroCollage />
+          </Suspense>
+        ) : (
+          <MobileHeroCollage />
+        )}
       </div>
     </section>
   );
 }
 
-function SplitReveal({ text, delay = 0 }: { text: string; delay?: number }) {
+function SplitReveal({ text, delay = 0, animate = true }: { text: string; delay?: number; animate?: boolean }) {
+  if (!animate) {
+    return <span className="inline-block align-baseline">{text}</span>;
+  }
   return (
     <span className="inline-block overflow-hidden align-baseline">
-      <motion.span
+      <m.span
         initial={{ y: 14 }}
         animate={{ y: 0 }}
         transition={{ delay, duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
         className="inline-block"
       >
         {text}
-      </motion.span>
+      </m.span>
     </span>
   );
 }
@@ -354,9 +354,9 @@ function WhatWeCreate() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-8">
           {CATEGORIES.map((c, i) => (
-            <motion.div
+            <m.div
               key={c.label}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -366,21 +366,21 @@ function WhatWeCreate() {
               <Link
                 to="/services/$category"
                 params={{ category: categoryToSlug(c.category) }}
-                className="group relative rounded-3xl overflow-hidden aspect-[4/5] sm:aspect-[4/5] lg:aspect-square block shadow-soft hover:shadow-luxe transition-shadow"
+                className="group relative rounded-2xl sm:rounded-3xl overflow-hidden aspect-[4/5] lg:aspect-square block shadow-soft hover:shadow-luxe transition-shadow"
               >
                 <img src={c.img} alt={c.label} loading="lazy" decoding="async" className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1200ms] group-hover:scale-110" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[color:var(--charcoal)]/90 via-[color:var(--charcoal)]/20 to-transparent" />
-                <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6 text-white">
-                  <div className="text-[10px] tracking-[0.25em] uppercase opacity-80 mb-1">{c.sub}</div>
-                  <div className="flex items-end justify-between gap-3">
-                    <h3 className="font-display text-2xl sm:text-3xl leading-none">{c.label}</h3>
-                    <span className="h-9 w-9 rounded-full bg-gold-gradient flex items-center justify-center transition-transform duration-500 group-hover:rotate-45">
-                      <ArrowUpRight className="h-4 w-4 text-white" />
+                <div className="absolute inset-x-0 bottom-0 p-3 sm:p-6 text-white">
+                  <div className="text-[8px] sm:text-[10px] tracking-[0.15em] sm:tracking-[0.25em] uppercase opacity-80 mb-1 truncate">{c.sub}</div>
+                  <div className="flex items-end justify-between gap-2 sm:gap-3">
+                    <h3 className="font-display text-lg sm:text-3xl leading-tight sm:leading-none">{c.label}</h3>
+                    <span className="shrink-0 h-7 w-7 sm:h-9 sm:w-9 rounded-full bg-gold-gradient flex items-center justify-center transition-transform duration-500 group-hover:rotate-45">
+                      <ArrowUpRight className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-white" />
                     </span>
                   </div>
                 </div>
               </Link>
-            </motion.div>
+            </m.div>
           ))}
         </div>
       </div>
@@ -486,7 +486,7 @@ function FAQ() {
               </button>
               <AnimatePresence>
                 {open === i && (
-                  <motion.div
+                  <m.div
                     initial={{ height: 0, opacity: 0 }}
                     animate={{ height: "auto", opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
@@ -494,7 +494,7 @@ function FAQ() {
                     className="overflow-hidden"
                   >
                     <p className="px-6 pb-6 text-muted-foreground leading-relaxed">{f.a}</p>
-                  </motion.div>
+                  </m.div>
                 )}
               </AnimatePresence>
             </div>
@@ -508,39 +508,46 @@ function FAQ() {
 /* ------------------------------ PAGE ------------------------------ */
 
 function Home() {
-  const [stage, setStage] = useState(() =>
-    typeof window !== "undefined" && window.innerWidth >= 768 ? 2 : 0,
+  const [showLower, setShowLower] = useState(() =>
+    typeof window !== "undefined" && (window.innerWidth >= 768 || window.scrollY > 40),
   );
 
   useEffect(() => {
-    if (stage >= 2) return;
-    const t1 = setTimeout(() => setStage(1), 60);
-    const t2 = setTimeout(() => setStage(2), 180);
-    return () => {
-      clearTimeout(t1);
-      clearTimeout(t2);
+    if (showLower) return;
+    let activated = false;
+    const activate = () => {
+      if (activated) return;
+      activated = true;
+      setShowLower(true);
     };
-  }, [stage]);
+
+    const events = ["scroll", "touchstart", "pointerdown", "keydown"] as const;
+    events.forEach((ev) => window.addEventListener(ev, activate, { once: true, passive: true }));
+    const fallbackTimer = setTimeout(activate, 10000);
+
+    return () => {
+      events.forEach((ev) => window.removeEventListener(ev, activate));
+      clearTimeout(fallbackTimer);
+    };
+  }, [showLower]);
 
   return (
     <div className="bg-background text-foreground overflow-x-hidden">
       <Hero />
       <Marquee />
-      {stage >= 1 ? (
-        <>
-          <WhatWeCreate />
-          <AboutSection />
-        </>
-      ) : (
-        <div className="min-h-[1200px]" aria-hidden="true" />
-      )}
-      {stage >= 2 ? (
-        <>
-          <Process />
-          <FAQ />
-          <Testimonials />
-        </>
-      ) : null}
+      <div className="mobile-offscreen-defer">
+        {showLower ? (
+          <>
+            <WhatWeCreate />
+            <AboutSection />
+            <Process />
+            <FAQ />
+            <Testimonials />
+          </>
+        ) : (
+          <div className="min-h-[1600px]" aria-hidden="true" />
+        )}
+      </div>
     </div>
   );
 }

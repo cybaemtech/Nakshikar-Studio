@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 
 // Custom detailed paintbrush icon resembling a classic artist's brush
 const ClassicBrushIcon = ({ size = 32, className = "" }) => (
@@ -114,7 +114,7 @@ export function CustomCursor() {
     <div className="pointer-events-none fixed inset-0 z-[100000] overflow-hidden" style={{ display: isVisible ? 'block' : 'none' }}>
       <AnimatePresence>
         {splatters.map((splatter) => (
-          <motion.div
+          <m.div
             key={splatter.id}
             initial={{ opacity: 0.8, scale: 0 }}
             animate={{ opacity: 0.8, scale: 1 }}
@@ -133,7 +133,7 @@ export function CustomCursor() {
         ))}
       </AnimatePresence>
       
-      <motion.div
+      <m.div
         className="absolute top-0 left-0 drop-shadow-md flex items-center justify-center pointer-events-none"
         animate={{
           x: mousePos.x - 3, // Align the brush tip to cursor
@@ -143,7 +143,7 @@ export function CustomCursor() {
       >
         {/* Classic Artist Brush icon */}
         <ClassicBrushIcon size={32} />
-      </motion.div>
+      </m.div>
     </div>
   );
 }

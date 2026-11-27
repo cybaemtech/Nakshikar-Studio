@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { Quote } from "lucide-react";
 import { SectionEyebrow } from "@/components/SectionEyebrow";
 
@@ -43,7 +43,7 @@ export function Testimonials() {
         <div className="relative max-w-4xl mx-auto rounded-3xl bg-[color:var(--cream)] border border-[color:var(--gold)]/30 p-8 sm:p-14 overflow-hidden shadow-soft">
           <div className="absolute -top-20 -right-20 h-64 w-64 rounded-full bg-gold-gradient opacity-20 blur-3xl" />
           <AnimatePresence mode="wait">
-            <motion.div
+            <m.div
               key={i}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -61,7 +61,7 @@ export function Testimonials() {
                 <div className="font-display text-xl sm:text-2xl text-[color:var(--royal-deep)]">{t.name}</div>
                 <div className="text-xs tracking-[0.22em] uppercase text-muted-foreground mt-1">{t.role}</div>
               </div>
-            </motion.div>
+            </m.div>
           </AnimatePresence>
 
           <div className="flex items-center justify-center gap-2 mt-10">
